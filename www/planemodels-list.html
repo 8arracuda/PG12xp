@@ -1,0 +1,62 @@
+<div ng-controller="PlanemodelsListCtrl" xmlns="http://www.w3.org/1999/html">
+
+
+    <a ng-click="importPlanemodels()" class="btn btn-primary">
+        import Planemodels
+    </a>
+
+    <a ng-click="savePlanemodels()" class="btn btn-primary">
+        save Planemodels
+    </a>
+
+    <a ng-click="initPlanemodels()" class="btn btn-primary">
+        init Planemodels
+    </a>
+
+
+    <a ng-click="clearPlanemodelsFromLocalStorage()" class="btn btn-primary">
+        clearPlanemodelsFromLocalStorage
+    </a>
+
+    <br>
+
+    <a ng-click="addPlanemodel()" class="btn btn-primary">
+        add Planemodels
+    </a>
+
+
+    <br>
+
+    Export Planes:
+    <p><input name="planes_export" type="text" value="{{ planemodelsString }}"></p>
+
+    <a ng-click="updateExportString()" class="btn btn-primary">
+        update export string
+    </a>
+
+    <form name="myForm">
+        <div class="list-group">
+
+            <div class="scrollable">
+                <div class="scrollable-content">
+                    <li class="list-group-item"
+                        ng-repeat="planemodel in planemodels"
+                            >
+                        id:<br>
+                        {{ planemodel.id }}
+                        manufacturer:<br>
+                        <input ng-model="planemodel.manufacturer" type="text"><br>
+                        model:<br>
+                        <input ng-model="planemodel.model" type="text"><br>
+                        ICAO:<br>
+                        <input ng-model="planemodel.icao" type="text"><br>
+
+                    </li>
+
+                </div>
+            </div>
+        </div>
+    </form>
+
+
+</div>

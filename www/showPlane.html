@@ -1,0 +1,37 @@
+<div ng-controller="ShowPlaneCtrl" xmlns="http://www.w3.org/1999/html">
+
+    Show Plane <a href="#/editPlane/{{ selectedPlane.id }}">[edit]</a><br>
+    Selected Plane:<br>
+    Reg:{{ selectedPlane.reg }}<br>
+    Airline: {{ selectedPlane.airline }}<br>
+
+    <a class="btn btn-primary" ng-click="addLanding()">add Landing</a>
+
+
+    <div class="scrollable">
+        <div class="scrollable-content">
+            <div class="list-group">
+                <li class="list-group-item"
+                    ng-repeat="landing in selectedPlane.landings">
+
+                    <div ng-show="$index!=0">
+                        {{ landing.airport }} ({{ landing.landingSpd }}) <a
+                            ng-click="deleteLanding($index)">[delete]</a>
+                    </div>
+                    <div ng-show="$index==0">
+                        Start at: {{ landing.airport }}
+                    </div>
+                    <a href="#/editLandings/{{ selectedPlane.id}}/{{ $index }}">[edit]</a><br>
+
+                </li>
+                <li class="list-group-item">
+                    <b>add a new landing</b>
+                    Airport: <input ng-model="stringAirport"><br>
+                    Landing Speed (m/s): <input ng-model="stringLandingSpd"><br>
+                    <a ng-click="addLanding()">add landing</a>
+                </li>
+
+            </div>
+        </div>
+    </div>
+</div>

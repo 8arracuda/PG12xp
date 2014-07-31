@@ -1,0 +1,30 @@
+<div ng-controller="SelectPlanemodelCtrl" xmlns="http://www.w3.org/1999/html">
+
+
+
+    <div class="list-group">
+
+        <li class="list-group-item">
+
+        </li>
+        <li class="list-group-item"
+            ng-repeat="planemodel in planemodels">
+
+            <div ng-show="selectedPlane.planemodelId == planemodel.id">
+
+                <a href="">[select]</a><b>{{ planemodel.manufacturer }} {{ planemodel.model }} - ({{
+                planemodel.id}})</b>
+            </div>
+
+            <div ng-show="selectedPlane.planemodelId != planemodel.id">
+                <a ng-click="selectPlanemodel(planemodel.id)">[select]</a> {{ planemodel.manufacturer }} {{ planemodel.model }} -- ({{ planemodel.id}})
+            </div>
+
+
+            <!--{{ planemodel.id }} - <input ng-model="planemodel.name" type="text">-->
+        </li>
+
+    </div>
+
+
+</div>

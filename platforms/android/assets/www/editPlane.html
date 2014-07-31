@@ -1,0 +1,15 @@
+<div ng-controller="EditPlaneCtrl" xmlns="http://www.w3.org/1999/html">
+
+    Edit Plane<br>
+    <a href="#/selectPlanemodelForPlane/{{ selectedPlane.id }}">select planemodel</a>
+
+    Selected Plane:
+
+    Registration: <input ng-model="planes[selectedPlaneIndex].reg"><br>
+    Airline: <input ng-model="planes[selectedPlaneIndex].airline"><br>
+
+
+
+    <a ng-click="test()">test</a>
+
+</div>

@@ -1,0 +1,43 @@
+<div ng-controller="PlanesListCtrl" xmlns="http://www.w3.org/1999/html">
+
+
+
+    <!--<a ng-click="clearPlanesFromLocalStorage()" class="btn btn-primary">-->
+    <!--clearPlanesFromLocalStorage-->
+    <!--</a>-->
+
+    <!--<a ng-click="initPlanes()" class="btn btn-primary">-->
+    <!--init Planes-->
+    <!--</a>-->
+
+    <!--<a ng-click="savePlanes()" class="btn btn-primary">-->
+    <!--save Planes-->
+    <!--</a>-->
+
+    <!--<a ng-click="importPlanes()"-->
+    <!--class="btn btn-primary">-->
+    <!--import Planes-->
+    <!--</a>-->
+
+    <!--<a ng-click="addPlanes()"-->
+    <!--class="btn btn-primary">-->
+    <!--add Plane-->
+    <!--</a>-->
+
+    <!--<a ng-click="updateArrayPlanemodels()"-->
+    <!--class="btn btn-primary">-->
+    <!--updateArrayPlanemodels</a>-->
+
+    Show Planes
+
+    <div class="list-group">
+        <li class="list-group-item"
+            ng-repeat="plane in planes">
+            <a href="#/showPlane/{{ plane.id }}">
+                {{ arrayPlanemodels[$index].manufacturer }} {{ arrayPlanemodels[$index].model }} --- {{ plane.id }} - {{
+                plane.reg }} [{{ plane.planemodel }}]
+
+            </a> <a href="#/editPlane/{{ plane.id }}">[edit]</a>
+        </li>
+    </div>
+</div>

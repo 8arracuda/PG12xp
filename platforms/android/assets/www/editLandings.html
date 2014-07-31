@@ -1,0 +1,28 @@
+<div ng-controller="EditLandingsCtrl" xmlns="http://www.w3.org/1999/html">
+
+
+
+    <div class="list-group">
+        <li class="list-group-item">
+            <a ng-click="prevLanding()" class="btn btn-primary" ng-class="{disabled: landingIndex<1}">prev landing</a>
+            previous landing<br>
+            Airport: {{ planes[selectedPlaneIndex].landings[landingIndex-1].airport }} ({{ planes[selectedPlaneIndex].landings[landingIndex-1].landingSpd }})
+        </li>
+        <li class="list-group-item">
+            edit this landing: (landingIndex: {{ landingIndex }})<br>
+            Airport:<br>
+            <input ng-model="planes[selectedPlaneIndex].landings[landingIndex].airport"><br>
+
+            Landing Speed:<br>
+            <input ng-model="planes[selectedPlaneIndex].landings[landingIndex].landingSpd"><br>
+        </li>
+        <li class="list-group-item">
+            <a ng-click="nextLanding()"
+               class="btn btn-primary"
+               ng-class="{disabled: landingIndex>planes[selectedPlaneIndex].landings.length-1}">next landing</a>
+            next landing:<br>
+            Airport: {{ planes[selectedPlaneIndex].landings[landingIndex+1].airport }} ({{ planes[selectedPlaneIndex].landings[landingIndex+1].landingSpd }})
+        </li>
+    </div>
+
+</div>

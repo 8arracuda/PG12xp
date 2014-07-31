@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<!--
+    Licensed to the Apache Software Foundation (ASF) under one
+    or more contributor license agreements.  See the NOTICE file
+    distributed with this work for additional information
+    regarding copyright ownership.  The ASF licenses this file
+    to you under the Apache License, Version 2.0 (the
+    "License"); you may not use this file except in compliance
+    with the License.  You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing,
+    software distributed under the License is distributed on an
+    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+     KIND, either express or implied.  See the License for the
+    specific language governing permissions and limitations
+    under the License.
+-->
+<html ng-app="sdApp">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="format-detection" content="telephone=no"/>
+    <!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
+    <meta name="viewport"
+          content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi"/>
+
+    <link rel="stylesheet" href="css/mobile-angular-ui-base.css"/>
+    <link rel="stylesheet" type="text/css" href="css/index.css"/>
+
+
+    <meta name="msapplication-tap-highlight" content="no"/>
+    <title>PG12xp</title>
+</head>
+<body>
+
+<!--begin sidebar-->
+<div class="sidebar sidebar-left" toggleable parent-active-class="sidebar-left-in" id="mainSidebar">
+    <h1 class="app-name">iRacing Companion App</h1>
+
+    <div class="scrollable">
+        <div class="scrollable-content">
+            <div class="list-group" toggle="off" bubble target="mainSidebar">
+                <a class="list-group-item" href="#/showPlanes">show planes <i
+                        class="fa fa-chevron-right pull-right"></i></a>
+                <a class="list-group-item" href="#/showPlanemodels">show planemodels <i
+                        class="fa fa-chevron-right pull-right"></i></a>
+                <a class="list-group-item" href="#/showPlanemodelsNew">show planemodels (new) <i
+                        class="fa fa-chevron-right pull-right"></i></a>
+                <a class="list-group-item" href="#/export">export <i class="fa fa-chevron-right pull-right"></i></a>
+            </div>
+
+        </div>
+    </div>
+</div>
+<!--end sidebar-->
+
+<div class="app">
+
+    <div class="navbar navbar-app navbar-absolute-top">
+
+        <div class="navbar-brand navbar-brand-center" yield-to="title">
+            <span>PG12</span>
+        </div>
+
+        <div class="btn-group pull-left">
+            <div ng-click="toggle('mainSidebar')" class="btn btn-navbar sidebar-toggle">
+                <i class="fa fa-bars"></i> Menu
+            </div>
+        </div>
+
+        <div class="btn-group pull-right" yield-to="navbarAction">
+            <div class="btn btn-navbar">
+                <i class="fa fa-plus"></i> New
+            </div>
+        </div>
+    </div>
+
+    <div class="app-body">
+        <ng-view class="app-content"></ng-view>
+    </div>
+
+</div>
+
+
+<script type="text/javascript" src="cordova.js"></script>
+<script type="text/javascript" src="js/index.js"></script>
+
+<script type="text/javascript" src="js/modernizr-latest.js"></script>
+<script type="text/javascript" src="js/angularJS_1.2.18/angular.min.js"></script>
+<script type="text/javascript" src="js/angularJS_1.2.18/angular-route.min.js"></script>
+<script type="text/javascript" src="js/mobile-angular-ui.min.js"></script>
+
+<script type="text/javascript" src="js/custom.js"></script>
+<script type="text/javascript" src="js/controller/ExportCtrl.js"></script>
+<script type="text/javascript" src="js/controller/PlanemodelsListCtrl.js"></script>
+<script type="text/javascript" src="js/controller/PlanesListCtrl.js"></script>
+<script type="text/javascript" src="js/controller/SelectPlanemodelCtrl.js"></script>
+<script type="text/javascript" src="js/controller/EditPlaneCtrl.js"></script>
+<script type="text/javascript" src="js/controller/ShowPlaneCtrl.js"></script>
+<script type="text/javascript" src="js/controller/EditLandingsCtrl.js"></script>
+<script type="text/javascript" src="js/controller/PlanemodelsListNewCtrl.js"></script>
+
+<script type="text/javascript">
+    app.initialize();
+</script>
+</body>
+</html>

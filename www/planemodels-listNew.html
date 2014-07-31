@@ -1,0 +1,98 @@
+<div ng-controller="PlanemodelsListNewCtrl" xmlns="http://www.w3.org/1999/html">
+
+
+    <a ng-click="importPlanemodels()" class="btn btn-primary">
+        import Planemodels
+    </a>
+
+    <a ng-click="importPlanemodelsFromWeb()" class="btn btn-primary">
+        import Planemodels from web
+    </a>
+
+    <a ng-click="savePlanemodels()" class="btn btn-primary">
+        save Planemodels
+    </a>
+
+    <a ng-click="initPlanemodels()" class="btn btn-primary">
+        init Planemodels
+    </a>
+
+
+    <a ng-click="clearPlanemodelsFromLocalStorage()" class="btn btn-primary">
+        clearPlanemodelsFromLocalStorage
+    </a>
+
+    <br>
+
+    <a ng-click="addPlanemodel()" class="btn btn-primary">
+        add Planemodels
+    </a>
+
+
+    <br>
+
+    Export Planes:
+    <p><input name="planes_export" type="text" value="{{ planemodelsString }}"></p>
+
+    <a ng-click="updateExportString()" class="btn btn-primary">
+        update export string
+    </a>
+
+    <!--<form name="myForm">-->
+    <!--<div class="list-group">-->
+
+    <!--<li class="list-group-item"-->
+    <!--ng-repeat="planemodel in planemodels"-->
+    <!-->-->
+    <!--id:<br>-->
+    <!--{{ planemodel.id }}-->
+    <!--manufacturer:<br>-->
+    <!--<input ng-model="planemodel.manufacturer" type="text"><br>-->
+    <!--model:<br>-->
+    <!--<input ng-model="planemodel.model" type="text"><br>-->
+    <!--ICAO:<br>-->
+    <!--<input ng-model="planemodel.icao" type="text"><br>-->
+
+    <!--</li>-->
+
+    <!--</div>-->
+    <!--</form>-->
+
+
+    <!--<li class="list-group-item"-->
+
+
+    Search Planemodels:<br>
+    <input ng-model="query" type="text"><br>
+
+    <br>
+    id: {{ planemodels[planemodelIndex].id }}<br>
+    manufacturer:<br>
+    <input ng-model="(planemodels|filter: query)[planemodelIndex].manufacturer" type="text"><br>
+    model:<br>
+    <input ng-model="(planemodels|filter: query)[planemodelIndex].model" type="text"><br>
+    ICAO:<br>
+    <input ng-model="(planemodels|filter: query)[planemodelIndex].icao" type="text"><br>
+
+    <!--</li>-->
+    <ul class="pager">
+        <li>
+            <a ng-click="planemodel_prev()"
+               ng-show="planemodelIndex>=1">
+
+            Previous
+        </a>
+        </li>
+        <li>{{ planemodelIndex +1}} / {{ (planemodels|filter: query).length}}</li>
+        <li>
+            <a ng-click="planemodel_next()"
+               ng-show="planemodelIndex<(planemodels|filter: query).length-1">
+
+                Next</a>
+        </li>
+
+
+    </ul>
+
+
+</div>
