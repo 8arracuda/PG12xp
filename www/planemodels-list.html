@@ -1,62 +1,47 @@
 <div ng-controller="PlanemodelsListCtrl" xmlns="http://www.w3.org/1999/html">
 
+    <div class="scrollable">
+        <div class="scrollable-content">
 
-    <a ng-click="importPlanemodels()" class="btn btn-primary">
-        import Planemodels
-    </a>
+            <ul class="nav nav-tabs">
+                <li ng-class="{active: tab == 1}"><a ng-click="tab = 1">Actions</a></li>
+                <li ng-class="{active: tab == 2}"><a ng-click="tab = 2">Planemodels</a></li>
+                <li ng-class="{active: tab == 3}"><a ng-click="tab = 3">Export</a></li>
+            </ul>
 
-    <a ng-click="savePlanemodels()" class="btn btn-primary">
-        save Planemodels
-    </a>
+            <div class="tab-content">
 
-    <a ng-click="initPlanemodels()" class="btn btn-primary">
-        init Planemodels
-    </a>
+                <div class="tab-pane"
+                     toggleable
+                     ng-class="{active: tab == 1}"
+                     id="Tab1"
+                     exclusion-group="myTabs">
 
+                    <div ng-include src='"planemodels-list-Actions.html"'></div>
 
-    <a ng-click="clearPlanemodelsFromLocalStorage()" class="btn btn-primary">
-        clearPlanemodelsFromLocalStorage
-    </a>
+                </div>
 
-    <br>
+                <div class="tab-pane"
+                     toggleable
+                     ng-class="{active: tab == 2}"
+                     default="active"
+                     id="Tab2"
+                     exclusion-group="myTabs">
 
-    <a ng-click="addPlanemodel()" class="btn btn-primary">
-        add Planemodels
-    </a>
+                    <div ng-include src='"planemodels-list_Planemodels.html"'></div>
 
+                </div>
 
-    <br>
+                <div class="tab-pane"
+                     toggleable
+                     ng-class="{active: tab == 3}"
+                     id="Tab3"
+                     exclusion-group="myTabs">
 
-    Export Planes:
-    <p><input name="planes_export" type="text" value="{{ planemodelsString }}"></p>
-
-    <a ng-click="updateExportString()" class="btn btn-primary">
-        update export string
-    </a>
-
-    <form name="myForm">
-        <div class="list-group">
-
-            <div class="scrollable">
-                <div class="scrollable-content">
-                    <li class="list-group-item"
-                        ng-repeat="planemodel in planemodels"
-                            >
-                        id:<br>
-                        {{ planemodel.id }}
-                        manufacturer:<br>
-                        <input ng-model="planemodel.manufacturer" type="text"><br>
-                        model:<br>
-                        <input ng-model="planemodel.model" type="text"><br>
-                        ICAO:<br>
-                        <input ng-model="planemodel.icao" type="text"><br>
-
-                    </li>
+                    <div ng-include src='"planemodels-list-Export.html"'></div>
 
                 </div>
             </div>
         </div>
-    </form>
-
-
+    </div>
 </div>

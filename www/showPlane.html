@@ -1,5 +1,15 @@
 <div ng-controller="ShowPlaneCtrl" xmlns="http://www.w3.org/1999/html">
 
+    <div content-for="title">
+        <span>showPlanes</span>
+    </div>
+
+    <div content-for="navbarAction">
+        <div class="btn btn-navbar">
+            <i class="fa fa-plus"></i>SP
+        </div>
+    </div>
+
     Show Plane <a href="#/editPlane/{{ selectedPlane.id }}">[edit]</a><br>
     Selected Plane:<br>
     Reg:{{ selectedPlane.reg }}<br>
