@@ -70,6 +70,7 @@ sdApp.controller('PlanesListCtrl', function ($scope, $routeParams, $http) {
     };
 
     $scope.importPlanes = function () {
+        console.log('importPlanes');
         $http.get('planes.json').
             success(function (data) {
                 $scope.planes = data;

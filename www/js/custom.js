@@ -36,6 +36,10 @@ sdApp.config(function ($routeProvider) {
             templateUrl: 'export.html',
             controller: 'ExportCtrl'
         }).
+        when('/about', {
+            templateUrl: 'about.html',
+            controller: 'AboutCtrl'
+        }).
         otherwise({
             redirectTo: '/showPlanes'
         });
