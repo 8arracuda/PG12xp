@@ -1,5 +1,7 @@
 sdApp.controller('PlanesListCtrl', function ($scope, $routeParams, $http) {
 
+    $scope.tab = 1;
+
     $scope.planes = JSON.parse(localStorage.getItem('planes'));
     $scope.planemodels = JSON.parse(localStorage.getItem('planemodels'));
 

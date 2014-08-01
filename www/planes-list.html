@@ -1,51 +1,39 @@
 <div ng-controller="PlanesListCtrl" xmlns="http://www.w3.org/1999/html">
 
-    <div content-for="title">
-        <span>planesList</span>
-    </div>
 
-    <div content-for="navbarAction">
-        <div class="btn btn-navbar">
-            <i class="fa fa-plus"></i>PL
+
+    <div class="scrollable">
+        <div class="scrollable-content">
+
+            <ul class="nav nav-tabs">
+                <li ng-class="{active: tab == 1}"><a ng-click="tab = 1">Actions</a></li>
+                <li ng-class="{active: tab == 2}"><a ng-click="tab = 2">Planes List</a></li>
+            </ul>
+
+            <div class="tab-content">
+
+                <div class="tab-pane"
+                     toggleable
+                     ng-class="{active: tab == 1}"
+                     id="Tab1"
+                     exclusion-group="myTabs">
+
+                    <div ng-include src='"planes-list-Actions.html"'></div>
+
+                </div>
+
+                <div class="tab-pane"
+                     toggleable
+                     ng-class="{active: tab == 2}"
+                     default="active"
+                     id="Tab2"
+                     exclusion-group="myTabs">
+
+                    <div ng-include src='"planes-list-List.html"'></div>
+
+                </div>
+
+            </div>
         </div>
-    </div>
-
-    <!--<a ng-click="clearPlanesFromLocalStorage()" class="btn btn-primary">-->
-    <!--clearPlanesFromLocalStorage-->
-    <!--</a>-->
-
-    <!--<a ng-click="initPlanes()" class="btn btn-primary">-->
-    <!--init Planes-->
-    <!--</a>-->
-
-    <!--<a ng-click="savePlanes()" class="btn btn-primary">-->
-    <!--save Planes-->
-    <!--</a>-->
-
-    <!--<a ng-click="importPlanes()"-->
-    <!--class="btn btn-primary">-->
-    <!--import Planes-->
-    <!--</a>-->
-
-    <!--<a ng-click="addPlanes()"-->
-    <!--class="btn btn-primary">-->
-    <!--add Plane-->
-    <!--</a>-->
-
-    <!--<a ng-click="updateArrayPlanemodels()"-->
-    <!--class="btn btn-primary">-->
-    <!--updateArrayPlanemodels</a>-->
-
-    Show Planes
-
-    <div class="list-group">
-        <li class="list-group-item"
-            ng-repeat="plane in planes">
-            <a href="#/showPlane/{{ plane.id }}">
-                {{ arrayPlanemodels[$index].manufacturer }} {{ arrayPlanemodels[$index].model }} --- {{ plane.id }} - {{
-                plane.reg }} [{{ plane.planemodel }}]
-
-            </a> <a href="#/editPlane/{{ plane.id }}">[edit]</a>
-        </li>
     </div>
 </div>
