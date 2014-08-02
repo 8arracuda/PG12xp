@@ -1,6 +1,7 @@
-<div ng-controller="PlanesListCtrl">
+<div ng-controller="PlanesListCtrl" xmlns="http://www.w3.org/1999/html">
 
-    <div content-for="title">
+
+<div content-for="title">
         <span>Actions</span>
     </div>
 
@@ -10,15 +11,18 @@
         </div>
     </div>
 
-    <a ng-click="clearPlanesFromLocalStorage()" class="btn btn-primary">
+    <a ng-click="clearPlanesFromLocalStorage()"
+       class="btn btn-primary">
         clearPlanesFromLocalStorage
     </a>
 
-    <a ng-click="initPlanes()" class="btn btn-primary">
+    <a ng-click="initPlanes()"
+       class="btn btn-primary">
         init Planes
     </a>
 
-    <a ng-click="savePlanes()" class="btn btn-primary">
+    <a ng-click="savePlanes()"
+       class="btn btn-primary">
         save Planes
     </a>
 
@@ -27,10 +31,7 @@
         import Planes
     </a>
 
-    <a ng-click="addPlanes()"
-       class="btn btn-primary">
-        add Plane
-    </a>
+
 
     <a ng-click="updateArrayPlanemodels()"
        class="btn btn-primary">

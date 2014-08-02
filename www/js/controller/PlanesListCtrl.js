@@ -1,6 +1,6 @@
 sdApp.controller('PlanesListCtrl', function ($scope, $routeParams, $http) {
 
-    $scope.tab = 1;
+    $scope.tab = 2;
 
     $scope.planes = JSON.parse(localStorage.getItem('planes'));
     $scope.planemodels = JSON.parse(localStorage.getItem('planemodels'));
@@ -40,7 +40,8 @@ sdApp.controller('PlanesListCtrl', function ($scope, $routeParams, $http) {
     //end
 
 
-    $scope.updateArrayPlanemodels = function() {
+    $scope.updateArrayPlanemodels = function () {
+        console.log('updateArrayPlanemodels');
         $scope.arrayPlanemodels = [];
 
         angular.forEach($scope.planes, function (plane) {
@@ -51,43 +52,32 @@ sdApp.controller('PlanesListCtrl', function ($scope, $routeParams, $http) {
 
             $scope.arrayPlanemodels.push(currentPlanemodel);
         });
-    };
+    }
 
     $scope.clearPlanesFromLocalStorage = function () {
+        console.log('clearPlanesFromLocalStorage');
         localStorage.removeItem("planes");
-    };
+    }
 
     $scope.savePlanes = function () {
+        console.log('savePlanes');
         localStorage.setItem('planes', JSON.stringify($scope.planes));
-    };
+    }
 
     $scope.initPlanes = function () {
+        console.log('initPlanes');
         $scope.planes = [
             {"id": 0, "planeId": 1, "reg": "F-XXX"},
             {"id": 1, "planeId": 1, "reg": "D-AILE"}
         ];
 
-    };
-
-    $scope.importPlanes = function () {
-        console.log('importPlanes');
-        $http.get('planes.json').
-            success(function (data) {
-                $scope.planes = data;
-            }).
-            error(function (data, status, headers, config) {
-                console.log('error loading planes.json');
-            });
     }
-
-
-
 
     $scope.updateExportString = function () {
         $scope.planesString = JSON.stringify($scope.planes);
-    };
+    }
 
-    $scope.importPlanes = function() {
+    $scope.importPlanes = function () {
         $http.get('planes.json').
             success(function (data) {
                 $scope.planes = data;
@@ -97,7 +87,7 @@ sdApp.controller('PlanesListCtrl', function ($scope, $routeParams, $http) {
             });
     }
 
-    $scope.addPlanes = function() {
+    $scope.addPlanes = function () {
         var newPlane = {
             "id": $scope.planes.length,
             "planemodelId": 1,
@@ -106,7 +96,19 @@ sdApp.controller('PlanesListCtrl', function ($scope, $routeParams, $http) {
         };
         $scope.planes.push(newPlane);
         localStorage.setItem('planes', JSON.stringify($scope.planes));
-    };
+    }
+
+    $scope.importPlanes = function () {
+        console.log('importPlanes');
+        $http.get('planes.json').
+            success(function (data) {
+                console.log('importPlanes - success');
+                $scope.planes = data;
+            }).
+            error(function (data, status, headers, config) {
+                console.log('error loading planes.json');
+            });
+    }
 
 
 });

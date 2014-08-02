@@ -10,16 +10,26 @@
         </div>
     </div>
 
+    <div content-for="navbarAction_left">
+        <a href="#/showPlanes"
+           class="btn btn-navbar"><i class="fa fa-backward"></i> back</a>
+    </div>
+
+    <div class="scrollable">
+        <div class="scrollable-content">
+
+
+
+
     Show Plane <a href="#/editPlane/{{ selectedPlane.id }}">[edit]</a><br>
     Selected Plane:<br>
     Reg:{{ selectedPlane.reg }}<br>
     Airline: {{ selectedPlane.airline }}<br>
 
-    <a class="btn btn-primary" ng-click="addLanding()">add Landing</a>
+    <!--<a class="btn btn-primary" ng-click="addLanding()">add Landing</a>-->
 
 
-    <div class="scrollable">
-        <div class="scrollable-content">
+
             <div class="list-group">
                 <li class="list-group-item"
                     ng-repeat="landing in selectedPlane.landings">
@@ -35,10 +45,11 @@
 
                 </li>
                 <li class="list-group-item">
-                    <b>add a new landing</b>
+                    <b>add a new landing</b><br>
                     Airport: <input ng-model="stringAirport"><br>
                     Landing Speed (m/s): <input ng-model="stringLandingSpd"><br>
-                    <a ng-click="addLanding()">add landing</a>
+                    <a ng-click="addLanding()"
+                            class="btn btn-default">add landing</a>
                 </li>
 
             </div>

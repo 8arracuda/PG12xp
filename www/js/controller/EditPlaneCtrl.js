@@ -4,6 +4,8 @@ sdApp.controller('EditPlaneCtrl', function ($scope, $routeParams, $http) {
     $scope.planes = JSON.parse(localStorage.getItem('planes'));
 
 
+
+
     //$scope.selectedPlane = $scope.planes[$routeParams.planeId];
 
 
@@ -18,7 +20,7 @@ sdApp.controller('EditPlaneCtrl', function ($scope, $routeParams, $http) {
 
     $scope.selectedPlaneIndex = $scope.planes.indexOf($scope.selectedPlane);
 
-    $scope.test = function() {
+        $scope.test = function() {
         alert(JSON.stringify($scope.planes));
         alert($scope.planes);
     };

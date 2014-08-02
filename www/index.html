@@ -61,11 +61,17 @@
             <span>PG12</span>
         </div>
 
-        <div class="btn-group pull-left">
+        <div class="btn-group pull-left" yield-to="navbarAction_left">
             <div ng-click="toggle('mainSidebar')" class="btn btn-navbar sidebar-toggle">
                 <i class="fa fa-bars"></i> Menu
             </div>
         </div>
+
+        <!--<div class="btn-group pull-left">-->
+            <!--<div ng-click="toggle('mainSidebar')" class="btn btn-navbar sidebar-toggle">-->
+                <!--<i class="fa fa-bars"></i> Menu-->
+            <!--</div>-->
+        <!--</div>-->
 
         <div class="btn-group pull-right" yield-to="navbarAction">
             <div class="btn btn-navbar">

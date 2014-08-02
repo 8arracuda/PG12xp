@@ -1,6 +1,7 @@
-<div ng-controller="PlanesListCtrl">
+<div ng-controller="PlanesListCtrl" xmlns="http://www.w3.org/1999/html">
 
-    <div content-for="title">
+
+<div content-for="title">
         <span>List of planes</span>
     </div>
 
@@ -17,10 +18,18 @@
             ng-repeat="plane in planes">
             <a href="#/showPlane/{{ plane.id }}">
                 {{ arrayPlanemodels[$index].manufacturer }} {{ arrayPlanemodels[$index].model }} --- {{ plane.id }} - {{
-                plane.reg }} [{{ plane.planemodel }}]
+                plane.reg }} [{{ plane.planemodel }}] [{{ planemodels[].manufacturer }}] ({{ plane.landings.length }} landings)
 
             </a> <a href="#/editPlane/{{ plane.id }}">[edit]</a>
         </li>
+    </div>
+
+
+    <div class="navbar navbar-app navbar-absolute-bottom">
+        <a ng-click="addPlanes()" class="btn btn-navbar ">
+            <i class="fa fa-plus"></i> add Plane
+        </a>
+
     </div>
 
 </div>
