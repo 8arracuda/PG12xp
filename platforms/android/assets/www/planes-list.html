@@ -2,42 +2,38 @@
 
 
 
-    <!--<a ng-click="clearPlanesFromLocalStorage()" class="btn btn-primary">-->
-    <!--clearPlanesFromLocalStorage-->
-    <!--</a>-->
+    <div class="scrollable">
+        <div class="scrollable-content">
 
-    <!--<a ng-click="initPlanes()" class="btn btn-primary">-->
-    <!--init Planes-->
-    <!--</a>-->
+            <ul class="nav nav-tabs">
+                <li ng-class="{active: tab == 1}"><a ng-click="tab = 1">Actions</a></li>
+                <li ng-class="{active: tab == 2}"><a ng-click="tab = 2">Planes List</a></li>
+            </ul>
 
-    <!--<a ng-click="savePlanes()" class="btn btn-primary">-->
-    <!--save Planes-->
-    <!--</a>-->
+            <div class="tab-content">
 
-    <!--<a ng-click="importPlanes()"-->
-    <!--class="btn btn-primary">-->
-    <!--import Planes-->
-    <!--</a>-->
+                <div class="tab-pane"
+                     toggleable
+                     ng-class="{active: tab == 1}"
+                     id="Tab1"
+                     exclusion-group="myTabs">
 
-    <!--<a ng-click="addPlanes()"-->
-    <!--class="btn btn-primary">-->
-    <!--add Plane-->
-    <!--</a>-->
+                    <div ng-include src='"planes-list-Actions.html"'></div>
 
-    <!--<a ng-click="updateArrayPlanemodels()"-->
-    <!--class="btn btn-primary">-->
-    <!--updateArrayPlanemodels</a>-->
+                </div>
 
-    Show Planes
+                <div class="tab-pane"
+                     toggleable
+                     ng-class="{active: tab == 2}"
+                     default="active"
+                     id="Tab2"
+                     exclusion-group="myTabs">
 
-    <div class="list-group">
-        <li class="list-group-item"
-            ng-repeat="plane in planes">
-            <a href="#/showPlane/{{ plane.id }}">
-                {{ arrayPlanemodels[$index].manufacturer }} {{ arrayPlanemodels[$index].model }} --- {{ plane.id }} - {{
-                plane.reg }} [{{ plane.planemodel }}]
+                    <div ng-include src='"planes-list-List.html"'></div>
 
-            </a> <a href="#/editPlane/{{ plane.id }}">[edit]</a>
-        </li>
+                </div>
+
+            </div>
+        </div>
     </div>
 </div>

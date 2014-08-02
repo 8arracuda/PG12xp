@@ -7,17 +7,10 @@ lsTest = '1';
 sdApp.config(function ($routeProvider) {
 
     $routeProvider.
-        when('/', {
-            templateUrl: 'start.html',
-            controller: 'StartCtrl'
-        }).
+
         when('/showPlanemodels/', {
             templateUrl: 'planemodels-list.html',
             controller: 'PlanemodelsListCtrl'
-        }).
-        when('/showPlanemodelsNew/', {
-            templateUrl: 'planemodels-listNew.html',
-            controller: 'PlanemodelsListNewCtrl'
         }).
         when('/showPlanes/', {
             templateUrl: 'planes-list.html',
@@ -43,8 +36,12 @@ sdApp.config(function ($routeProvider) {
             templateUrl: 'export.html',
             controller: 'ExportCtrl'
         }).
+        when('/about', {
+            templateUrl: 'about.html',
+            controller: 'AboutCtrl'
+        }).
         otherwise({
-            redirectTo: '/'
+            redirectTo: '/showPlanes'
         });
 
 

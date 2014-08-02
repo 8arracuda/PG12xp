@@ -36,20 +36,18 @@
 
 <!--begin sidebar-->
 <div class="sidebar sidebar-left" toggleable parent-active-class="sidebar-left-in" id="mainSidebar">
-    <h1 class="app-name">iRacing Companion App</h1>
+    <h1 class="app-name">X-Plane Companion App</h1>
 
     <div class="scrollable">
         <div class="scrollable-content">
             <div class="list-group" toggle="off" bubble target="mainSidebar">
                 <a class="list-group-item" href="#/showPlanes">show planes <i
                         class="fa fa-chevron-right pull-right"></i></a>
-                <a class="list-group-item" href="#/showPlanemodels">show planemodels <i
-                        class="fa fa-chevron-right pull-right"></i></a>
-                <a class="list-group-item" href="#/showPlanemodelsNew">show planemodels (new) <i
+                <a class="list-group-item" href="#/showPlanemodels">show planemodels<i
                         class="fa fa-chevron-right pull-right"></i></a>
                 <a class="list-group-item" href="#/export">export <i class="fa fa-chevron-right pull-right"></i></a>
+                <a class="list-group-item" href="#/about">about<i class="fa fa-chevron-right pull-right"></i></a>
             </div>
-
         </div>
     </div>
 </div>
@@ -63,11 +61,17 @@
             <span>PG12</span>
         </div>
 
-        <div class="btn-group pull-left">
+        <div class="btn-group pull-left" yield-to="navbarAction_left">
             <div ng-click="toggle('mainSidebar')" class="btn btn-navbar sidebar-toggle">
                 <i class="fa fa-bars"></i> Menu
             </div>
         </div>
+
+        <!--<div class="btn-group pull-left">-->
+            <!--<div ng-click="toggle('mainSidebar')" class="btn btn-navbar sidebar-toggle">-->
+                <!--<i class="fa fa-bars"></i> Menu-->
+            <!--</div>-->
+        <!--</div>-->
 
         <div class="btn-group pull-right" yield-to="navbarAction">
             <div class="btn btn-navbar">
@@ -90,6 +94,7 @@
 <script type="text/javascript" src="js/angularJS_1.2.18/angular.min.js"></script>
 <script type="text/javascript" src="js/angularJS_1.2.18/angular-route.min.js"></script>
 <script type="text/javascript" src="js/mobile-angular-ui.min.js"></script>
+<script type="text/javascript" src="js/jquery-1.11.1.min.js"></script>
 
 <script type="text/javascript" src="js/custom.js"></script>
 <script type="text/javascript" src="js/controller/ExportCtrl.js"></script>
@@ -99,7 +104,8 @@
 <script type="text/javascript" src="js/controller/EditPlaneCtrl.js"></script>
 <script type="text/javascript" src="js/controller/ShowPlaneCtrl.js"></script>
 <script type="text/javascript" src="js/controller/EditLandingsCtrl.js"></script>
-<script type="text/javascript" src="js/controller/PlanemodelsListNewCtrl.js"></script>
+<script type="text/javascript" src="js/controller/AboutCtrl.js"></script>
+
 
 <script type="text/javascript">
     app.initialize();

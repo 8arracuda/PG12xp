@@ -1,15 +1,33 @@
 <div ng-controller="EditPlaneCtrl" xmlns="http://www.w3.org/1999/html">
 
-    Edit Plane<br>
-    <a href="#/selectPlanemodelForPlane/{{ selectedPlane.id }}">select planemodel</a>
+    <div content-for="title">
+        <span>EditPlane</span>
+    </div>
 
-    Selected Plane:
+    <div content-for="navbarAction">
+        <div class="btn btn-navbar">
+            <i class="fa fa-plus"></i>EP
+        </div>
+    </div>
 
-    Registration: <input ng-model="planes[selectedPlaneIndex].reg"><br>
-    Airline: <input ng-model="planes[selectedPlaneIndex].airline"><br>
+    <div content-for="navbarAction_left">
+        <a href="#/showPlanes"
+           class="btn btn-navbar"><i class="fa fa-backward"></i> back</a>
+    </div>
 
 
 
-    <a ng-click="test()">test</a>
+    <div class="list-group">
 
+
+        planemodel: {{ planemodels[planes[selectedPlaneIndex].planemodelId].manufacturer }}  {{ planemodels[planes[selectedPlaneIndex].planemodelId].model }} <a
+            href="#/selectPlanemodelForPlane/{{ selectedPlane.id }}"
+            class="btn btn-default">change planemodel</a><br>
+
+        Registration: <input ng-model="planes[selectedPlaneIndex].reg"><br>
+        Airline: <input ng-model="planes[selectedPlaneIndex].airline"><br>
+
+
+        <a class="btn btn-default" ng-click="test()">test</a>
+    </div>
 </div>
