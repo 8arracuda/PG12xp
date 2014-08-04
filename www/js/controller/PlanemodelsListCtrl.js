@@ -2,8 +2,6 @@ sdApp.controller('PlanemodelsListCtrl', function ($scope, $routeParams, $http) {
 
     $scope.tab = 1;
 
-    fooCounter = 0;
-
     $scope.planemodelIndex = 0;
 
     $scope.customers = [];
@@ -215,19 +213,7 @@ sdApp.controller('PlanemodelsListCtrl', function ($scope, $routeParams, $http) {
 
                 var transaction = db.transaction("planemodels", "readwrite");
 
-                console.log('fooCounter: ' + fooCounter);
-                fooCounter++;
 
-                transaction.oncomplete = function (event) {
-                    alert("All done!");
-                };
-
-                transaction.onerror = function (event) {
-                    // Don't forget to handle errors!
-                    alert("transaction error");
-                    alert(JSON.stringify(event));
-
-                };
 
                 var objectStore = transaction.objectStore("planemodels");
                 // alert(JSON.stringify(objectStore));
@@ -245,6 +231,17 @@ sdApp.controller('PlanemodelsListCtrl', function ($scope, $routeParams, $http) {
 
                 }
 
+                transaction.oncomplete = function (event) {
+                    alert("All done!");
+                };
+
+                transaction.onerror = function (event) {
+                    // Don't forget to handle errors!
+                    alert("transaction error");
+                    alert(JSON.stringify(event));
+
+                };
+
 
             }).
             error(function (data, status, headers, config) {
@@ -252,5 +249,11 @@ sdApp.controller('PlanemodelsListCtrl', function ($scope, $routeParams, $http) {
             });
     }
 
+
+    $scope.closeDatabase = function() {
+        db.close();
+        $scope.databaseConnected = false;
+
+    }
 
 });
