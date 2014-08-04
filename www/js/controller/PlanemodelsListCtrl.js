@@ -2,11 +2,14 @@ sdApp.controller('PlanemodelsListCtrl', function ($scope, $routeParams, $http) {
 
     $scope.tab = 1;
 
+    fooCounter = 0;
+
     $scope.planemodelIndex = 0;
 
     $scope.customers = [];
     $scope.planemodels = [];
 
+    $scope.databaseConnected = false;
 
 
     const planemodels = [
@@ -34,9 +37,6 @@ sdApp.controller('PlanemodelsListCtrl', function ($scope, $routeParams, $http) {
 //Code von
 //https://developer.mozilla.org/de/docs/IndexedDB/IndexedDB_verwenden
 
-    $scope.wipeDatabase = function () {
-
-    };
 
     $scope.planemodel_next = function () {
         $scope.planemodelIndex++;
@@ -54,10 +54,10 @@ sdApp.controller('PlanemodelsListCtrl', function ($scope, $routeParams, $http) {
             window.alert("Ihr Browser unterstützt keine stabile Version von IndexedDB. Dieses und jenes Feature wird Ihnen nicht zur Verfügung stehen.");
         } else {
 
-            const customerData = [
-                { ssn: "444-44-4444", name: "Bill", age: 35, email: "bill@company.com" },
-                { ssn: "555-55-5555", name: "Donna", age: 32, email: "donna@home.org" }
-            ];
+//            const customerData = [
+//                { ssn: "444-44-4444", name: "Bill", age: 35, email: "bill@company.com" },
+//                { ssn: "555-55-5555", name: "Donna", age: 32, email: "donna@home.org" }
+//            ];
 
             const dbName = "planemodels";
 
@@ -72,6 +72,8 @@ sdApp.controller('PlanemodelsListCtrl', function ($scope, $routeParams, $http) {
             request.onsuccess = function (event) {
                 console.log('request.onsuccess');
                 db = request.result;
+                $scope.databaseConnected = true;
+                $scope.$apply();
                 // Machen Sie etwas mit request.result!
             };
 
@@ -137,7 +139,7 @@ sdApp.controller('PlanemodelsListCtrl', function ($scope, $routeParams, $http) {
     };
 
     $scope.showList = function () {
-        alert('showList was called');
+        //alert('showList was called');
 
         //$scope.customers = [];
 
@@ -157,12 +159,10 @@ sdApp.controller('PlanemodelsListCtrl', function ($scope, $routeParams, $http) {
             else {
                 //cusor has no more items
                 //-> notify angularJS to reload
-                alert("showlist - loaded " + counter + " items");
+                alert("showList - loaded " + counter + " items");
                 $scope.$apply();
             }
-
         };
-
     };
 
 
@@ -177,5 +177,80 @@ sdApp.controller('PlanemodelsListCtrl', function ($scope, $routeParams, $http) {
         };
 
     };
+
+    $scope.deleteAllPlanemodelsFromDatabase = function () {
+
+        var answer = confirm('do you want to delete all entries in planemodel?');
+
+        if (answer) {
+            console.log('user confirmed to delete');
+
+            var objectStore = db.transaction("planemodels", "readwrite").objectStore("planemodels");
+
+            objectStore.clear();
+
+        } else {
+            console.log('user declined to delete');
+        }
+
+    };
+
+    $scope.loadPlanemodels_web = function () {
+        console.log("loadPlanemodels_web start");
+        var url = '/planemodels.json';
+        loadPlanemodels(url);
+    }
+
+    $scope.loadPlanemodels_pg = function () {
+        console.log("loadPlanemodels_pg start");
+        var url = 'http://c.raceplanner.de/PG10xp/planemodels.json';
+        loadPlanemodels(url);
+    }
+
+    loadPlanemodels = function (url) {
+        console.log("loadPlanemodels start");
+        $http.get(url).
+            success(function (planemodels_import) {
+                console.log("loadPlanemodels success");
+
+                var transaction = db.transaction("planemodels", "readwrite");
+
+                console.log('fooCounter: ' + fooCounter);
+                fooCounter++;
+
+                transaction.oncomplete = function (event) {
+                    alert("All done!");
+                };
+
+                transaction.onerror = function (event) {
+                    // Don't forget to handle errors!
+                    alert("transaction error");
+                    alert(JSON.stringify(event));
+
+                };
+
+                var objectStore = transaction.objectStore("planemodels");
+                // alert(JSON.stringify(objectStore));
+                // alert(JSON.stringify(planemodels_import.length));
+
+
+                for (var i in planemodels_import) {
+                    //for (i = 0; i < planemodels_import.length; i++) {
+                    //if (i=4) {
+                    objectStore.add(planemodels_import[i]);
+                    //    alert(JSON.stringify(planemodels_import[i]));
+                    console.log('added (' + i + ') - key:' + planemodels_import[i].id);
+                    //}
+
+
+                }
+
+
+            }).
+            error(function (data, status, headers, config) {
+                console.log('error while importing from ' + url);
+            });
+    }
+
 
 });
