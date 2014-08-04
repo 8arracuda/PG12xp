@@ -1,4 +1,4 @@
-<div ng-controller="PlanemodelsListCtrl">
+<!--<div ng-controller="PlanemodelsListCtrl">-->
 
     <div content-for="title">
         <span>Actions</span>
@@ -10,16 +10,26 @@
         </div>
     </div>
 
+<a class="btn btn-success" ng-show="databaseConnected">DB is connected</a>
+<a class="btn btn-danger" ng-show="!databaseConnected">DB is not connected</a>
+
+    <!--<a ng-click="openDatabase()" class="btn btn-primary">-->
+        <!--openDatabase-->
+    <!--</a>-->
+
+    <!--<a ng-click="saveDatabase()" class="btn btn-primary">-->
+        <!--saveDatabase-->
+    <!--</a>-->
+
+    <!--<a ng-click="scopeTest()" class="btn btn-primary">-->
+        <!--scopeTest-->
+    <!--</a>-->
 
 
+<br>
+    <a class="btn btn-primary" ng-click="openDatabase()">open Database</a>
+    <a class="btn btn-primary" ng-click="saveDatabase()">save Database</a>
+    <a class="btn btn-primary" ng-click="showList()">showList</a>
+    <a class="btn btn-primary" ng-click="showObjectStores()">showObjectStores</a>
 
-    <a ng-click="initDatabase()" class="btn btn-primary">
-        initDatabase
-    </a>
-
-
-
-
-
-
-</div>
+<!--</div>-->

@@ -1,47 +1,48 @@
-<div ng-controller="PlanemodelsListCtrl">
+<!--<div ng-controller="PlanemodelsListCtrl">-->
 
-    <div content-for="title">
-        <span>Planemodels</span>
-    </div>
-
-    <div content-for="navbarAction">
-        <div class="btn btn-navbar">
-            <i class="fa fa-plus"></i>PM
-        </div>
-    </div>
-
-    Search Planemodels:<br>
-    <input ng-model="query" type="text"><br>
-
-    <br>
-    id: {{ planemodels[planemodelIndex].id }}<br>
-    manufacturer:<br>
-    <input ng-model="(planemodels|filter: query)[planemodelIndex].manufacturer" type="text"><br>
-    model:<br>
-    <input ng-model="(planemodels|filter: query)[planemodelIndex].model" type="text"><br>
-    ICAO:<br>
-    <input ng-model="(planemodels|filter: query)[planemodelIndex].icao" type="text"><br>
-
-    <a ng-click="planemodel_prev()"
-       ng-class="{disabled: planemodelIndex<1}"
-       class="btn btn-default btn-sm">
-
-        Previous
-    </a>
-
-    {{ planemodelIndex +1}} / {{ (planemodels|filter: query).length}}</li>
-
-    <a ng-click="planemodel_next()"
-       ng-class="{disabled: planemodelIndex>(planemodels|filter: query).length-2}"
-       class="btn btn-default btn-sm">
-
-        Next</a>
-
-
-    <div class="navbar navbar-app navbar-absolute-bottom">
-        <div class="btn-group justified">
-            <a ng-click="addPlanemodel()" class="btn btn-navbar"><i class="fa fa-plus"></i>add Planemodel</a>
-        </div>
-    </div>
-
+<div content-for="title">
+    <span>Planemodels</span>
 </div>
+
+<div content-for="navbarAction">
+    <div class="btn btn-navbar">
+        <i class="fa fa-plus"></i>PM
+    </div>
+</div>
+
+Search Planemodels:<br>
+<input ng-model="query" type="text" ng-change="planemodelIndex = 0"><br>
+
+<br>
+id: {{ planemodels[planemodelIndex].id }}<br>
+manufacturer:<br>
+<input ng-model="(planemodels|filter: query)[planemodelIndex].manufacturer" type="text"><br>
+model:<br>
+<input ng-model="(planemodels|filter: query)[planemodelIndex].model" type="text"><br>
+ICAO:<br>
+<input ng-model="(planemodels|filter: query)[planemodelIndex].icao" type="text"><br>
+
+<a ng-click="planemodel_prev()"
+   ng-class="{disabled: planemodelIndex<1}"
+   class="btn btn-default btn-sm">
+
+    Previous
+</a>
+
+{{ planemodelIndex +1}} / {{ (planemodels|filter: query).length}}</li>
+
+<a ng-click="planemodel_next()"
+   ng-class="{disabled: planemodelIndex>(planemodels|filter: query).length-2}"
+   class="btn btn-default btn-sm">
+
+    Next
+</a>
+
+
+<div class="navbar navbar-app navbar-absolute-bottom">
+    <div class="btn-group justified">
+        <a ng-click="addPlanemodel()" class="btn btn-navbar"><i class="fa fa-plus"></i>add Planemodel</a>
+    </div>
+</div>
+
+<!--</div>-->

@@ -14,4 +14,17 @@
 /users/michael/AB-Code/PG12xp/platforms/android/res/drawable-xhdpi/icon.png \
 /users/michael/AB-Code/PG12xp/platforms/android/res/values/strings.xml \
 /users/michael/AB-Code/PG12xp/platforms/android/res/xml/config.xml \
+/users/michael/AB-Code/PG12xp/platforms/android/ant-build/res/drawable/icon.png \
+/users/michael/AB-Code/PG12xp/platforms/android/ant-build/res/drawable-hdpi/icon.png \
+/users/michael/AB-Code/PG12xp/platforms/android/ant-build/res/drawable-land-hdpi/screen.png \
+/users/michael/AB-Code/PG12xp/platforms/android/ant-build/res/drawable-land-ldpi/screen.png \
+/users/michael/AB-Code/PG12xp/platforms/android/ant-build/res/drawable-land-mdpi/screen.png \
+/users/michael/AB-Code/PG12xp/platforms/android/ant-build/res/drawable-land-xhdpi/screen.png \
+/users/michael/AB-Code/PG12xp/platforms/android/ant-build/res/drawable-ldpi/icon.png \
+/users/michael/AB-Code/PG12xp/platforms/android/ant-build/res/drawable-mdpi/icon.png \
+/users/michael/AB-Code/PG12xp/platforms/android/ant-build/res/drawable-port-hdpi/screen.png \
+/users/michael/AB-Code/PG12xp/platforms/android/ant-build/res/drawable-port-ldpi/screen.png \
+/users/michael/AB-Code/PG12xp/platforms/android/ant-build/res/drawable-port-mdpi/screen.png \
+/users/michael/AB-Code/PG12xp/platforms/android/ant-build/res/drawable-port-xhdpi/screen.png \
+/users/michael/AB-Code/PG12xp/platforms/android/ant-build/res/drawable-xhdpi/icon.png \
 /users/michael/AB-Code/PG12xp/platforms/android/ant-build/AndroidManifest.xml \
