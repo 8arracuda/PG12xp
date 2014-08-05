@@ -121,7 +121,10 @@ sdApp.controller('PlanemodelsListCtrl', function ($scope, $routeParams, $http) {
             // Don't forget to handle errors!
         };
 
-        var objectStore = transaction.objectStore("planemodels");
+        //var objectStore = transaction.objectStore("planemodels");
+        var objectStore = getObjectStore("planemodels", "readonly");
+
+
         for (var i in planemodels) {
             var request = objectStore.add(planemodels[i]);
             request.onsuccess = function (event) {
@@ -141,7 +144,7 @@ sdApp.controller('PlanemodelsListCtrl', function ($scope, $routeParams, $http) {
 
         //$scope.customers = [];
 
-        var objectStore = db.transaction("planemodels").objectStore("planemodels");
+        var objectStore = getObjectStore("planemodels", "readonly");
 
         var counter = 0;
         objectStore.openCursor().onsuccess = function (event) {
@@ -183,8 +186,7 @@ sdApp.controller('PlanemodelsListCtrl', function ($scope, $routeParams, $http) {
         if (answer) {
             console.log('user confirmed to delete');
 
-            var objectStore = db.transaction("planemodels", "readwrite").objectStore("planemodels");
-
+            var objectStore = getObjectStore("planemodels", "readwrite");
             objectStore.clear();
 
         } else {
@@ -192,6 +194,93 @@ sdApp.controller('PlanemodelsListCtrl', function ($scope, $routeParams, $http) {
         }
 
     };
+
+
+    $scope.deleteAllPlanemodelsFromDatabase2 = function () {
+
+        var answer = confirm('do you want to delete all entries in planemodel?');
+
+        if (answer) {
+            console.log('user confirmed to delete');
+
+            var transaction = db.transaction("planemodels", "readwrite");
+            var objectStore = transaction.objectStore("planemodels");
+
+            transaction.oncomplete = function (event) {
+                console.log('delete2 - transaction.oncomplete');
+                alert("All done!");
+            };
+
+            transaction.onerror = function (event) {
+                console.error('delete2 - transaction.onerror');
+                // Don't forget to handle errors!
+            };
+
+            objectStore.clear();
+            db.close();
+
+        } else {
+            console.log('user declined to delete');
+        }
+
+    };
+
+    $scope.deleteAllPlanemodelsFromDatabase3 = function () {
+
+        var answer = confirm('do you want to delete all entries in planemodel?');
+
+        if (answer) {
+            console.log('user confirmed to delete');
+
+            const dbName = "planemodels";
+            var request = window.indexedDB.open(dbName, 1);
+
+            request.onerror = function (event) {
+                console.error('request.onerror');
+                alert("Database error: " + event.target.errorCode);
+                // Machen Sie etwas mit request.errorCode!
+            };
+            request.onsuccess = function (event) {
+                console.log('request.onsuccess');
+                db = request.result;
+                //$scope.databaseConnected = true;
+                //$scope.$apply();
+                // Machen Sie etwas mit request.result!
+
+
+                var transaction = db.transaction("planemodels", "readwrite");
+                var objectStore = transaction.objectStore("planemodels");
+
+                transaction.oncomplete = function (event) {
+                    console.log('delete2 - transaction.oncomplete');
+                    alert("All done!");
+                };
+
+                transaction.onerror = function (event) {
+                    console.error('delete2 - transaction.onerror');
+                    // Don't forget to handle errors!
+                };
+
+                objectStore.clear();
+                db.close();
+            };
+
+
+
+
+        } else {
+            console.log('user declined to delete');
+        }
+
+    };
+
+
+
+
+
+
+
+
 
     $scope.loadPlanemodels_web = function () {
         console.log("loadPlanemodels_web start");
@@ -212,10 +301,13 @@ sdApp.controller('PlanemodelsListCtrl', function ($scope, $routeParams, $http) {
                 console.log("loadPlanemodels success");
 
                 var transaction = db.transaction("planemodels", "readwrite");
-
-
-
                 var objectStore = transaction.objectStore("planemodels");
+
+
+                //geht nicht, da die Events nicht an transaction gesendet werden können.
+                //var objectStore = getObjectStore("planemodels", "readwrite");
+
+
                 // alert(JSON.stringify(objectStore));
                 // alert(JSON.stringify(planemodels_import.length));
 
@@ -227,8 +319,6 @@ sdApp.controller('PlanemodelsListCtrl', function ($scope, $routeParams, $http) {
                     //    alert(JSON.stringify(planemodels_import[i]));
                     console.log('added (' + i + ') - key:' + planemodels_import[i].id);
                     //}
-
-
                 }
 
                 transaction.oncomplete = function (event) {
@@ -254,6 +344,11 @@ sdApp.controller('PlanemodelsListCtrl', function ($scope, $routeParams, $http) {
         db.close();
         $scope.databaseConnected = false;
 
+    }
+
+    getObjectStore = function(store_name, mode) {
+        var tx = db.transaction(store_name, mode);
+        return tx.objectStore(store_name);
     }
 
 });
