@@ -12,6 +12,10 @@ sdApp.config(function ($routeProvider) {
             templateUrl: 'planemodels-list.html',
             controller: 'PlanemodelsListCtrl'
         }).
+        when('/showPlanemodelsTest/', {
+            templateUrl: 'planemodels-listTest.html',
+            controller: 'PlanemodelsListTestCtrl'
+        }).
         when('/showPlanes/', {
             templateUrl: 'planes-list.html',
             controller: 'PlanesListCtrl'
@@ -29,6 +33,10 @@ sdApp.config(function ($routeProvider) {
             controller: 'EditPlaneCtrl'
         }).
         when('/selectPlanemodelForPlane/:planeId', {
+            templateUrl: 'selectPlanemodelForPlane.html',
+            controller: 'SelectPlanemodelForPlaneCtrl'
+        }).
+        when('/selectPlanemodel/', {
             templateUrl: 'selectPlanemodel.html',
             controller: 'SelectPlanemodelCtrl'
         }).

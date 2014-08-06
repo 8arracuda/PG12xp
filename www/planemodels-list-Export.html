@@ -1,21 +1,21 @@
 <!--<div ng-controller="PlanemodelsListCtrl">-->
 
-    <div content-for="title">
-        <span>Export</span>
+<div content-for="title">
+    <span>Export</span>
+</div>
+
+<div content-for="navbarAction">
+    <div class="btn btn-navbar">
+        <i class="fa fa-plus"></i>EX
     </div>
-
-    <div content-for="navbarAction">
-        <div class="btn btn-navbar">
-            <i class="fa fa-plus"></i>EX
-        </div>
-    </div>
+</div>
 
 
-    Export Planes:
-    <p><input name="planes_export" type="text" value="{{ planemodelsString }}"></p>
+Export Planes:
+<p><input name="planes_export" type="text" value="{{ planemodelsString }}"></p>
 
-    <a ng-click="updateExportString()" class="btn btn-primary">
-        update export string
-    </a>
+<a ng-click="updateExportString()" class="btn btn-primary">
+    update export string
+</a>
 
 <!--</div>-->

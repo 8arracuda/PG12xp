@@ -1,4 +1,4 @@
-sdApp.controller('PlanemodelsListCtrl', function ($scope, $routeParams, $http) {
+sdApp.controller('PlanemodelsListTestCtrl', function ($scope, $routeParams, $http) {
 
     $scope.tab = 1;
 
@@ -11,10 +11,6 @@ sdApp.controller('PlanemodelsListCtrl', function ($scope, $routeParams, $http) {
     const dbVersion = 1;
 
     $scope.databaseConnected = false;
-
-//    $scope.planemodel_manufacturer = "";
-//    $scope.planemodel_model = "";
-//    $scope.planemodel_icao = "";
 
 
     const planemodels = [
@@ -39,27 +35,32 @@ sdApp.controller('PlanemodelsListCtrl', function ($scope, $routeParams, $http) {
         {"id": 24, "manufacturer": "Cessna", "model": "208B Super Cargomaster", "icao": "C208", "wake": "L", "length_m": "11,5", "span_m": "15,9", "height_m": "4,3", "wingarea_m2": "26", "max_fuel_kg": "-1", "mtow_kg": "3970", "empty_weight_pfd": "-1", "max_weight_pfd": "-1", "max_passengers": "0", "range_km": "2000", "cruise_speed_kmh": "317", "field_length_landing_m": "290", "field_length_takeoff_m": "417", "$$hashKey": "024"}
     ];
 
+//Code von
+//https://developer.mozilla.org/de/docs/IndexedDB/IndexedDB_verwenden
+
 
     $scope.planemodel_next = function () {
-        console.log("planemodel_next");
         $scope.planemodelIndex++;
-        // alert(JSON.stringify($scope.planemodels));
     };
 
     $scope.planemodel_prev = function () {
-        console.log("planemodel_prev");
         $scope.planemodelIndex--;
-        // alert(JSON.stringify($scope.planemodels));
     };
 
+    $scope.openDatabase = function () {
+        console.log('openDatabase start');
 
-    initPlanemodels2 = function () {
-        //console.log('openDatabase start');
 
         if (!window.indexedDB) {
             window.alert("Ihr Browser unterstützt keine stabile Version von IndexedDB. Dieses und jenes Feature wird Ihnen nicht zur Verfügung stehen.");
         } else {
 
+//            const customerData = [
+//                { ssn: "444-44-4444", name: "Bill", age: 35, email: "bill@company.com" },
+//                { ssn: "555-55-5555", name: "Donna", age: 32, email: "donna@home.org" }
+//            ];
+
+            // Öffnen unserer Datenbank
             var request = window.indexedDB.open(dbName, dbVersion);
 
             request.onerror = function (event) {
@@ -72,8 +73,6 @@ sdApp.controller('PlanemodelsListCtrl', function ($scope, $routeParams, $http) {
                 console.log('request.onsuccess');
                 db = request.result;
                 // Machen Sie etwas mit request.result!
-
-                $scope.showList();
 
             };
 
@@ -103,38 +102,145 @@ sdApp.controller('PlanemodelsListCtrl', function ($scope, $routeParams, $http) {
                 console.log('openDatabase end');
             }
         }
-    };
+    }
+
+    openDatabase2 = function (onErrorCallback, onSuccessCallback) {
+        console.log('openDatabase start');
 
 
-    $scope.showList = function () {
+        if (!window.indexedDB) {
+            window.alert("Ihr Browser unterstützt keine stabile Version von IndexedDB. Dieses und jenes Feature wird Ihnen nicht zur Verfügung stehen.");
+        } else {
 
-        var objectStoreName = "planemodels";
+//            const customerData = [
+//                { ssn: "444-44-4444", name: "Bill", age: 35, email: "bill@company.com" },
+//                { ssn: "555-55-5555", name: "Donna", age: 32, email: "donna@home.org" }
+//            ];
 
-        var tx = db.transaction(objectStoreName, "readonly");
-        var objectStore = tx.objectStore(objectStoreName);
+            const dbName = "planemodels";
 
+            // Öffnen unserer Datenbank
+            var request = window.indexedDB.open(dbName, dbVersion);
 
-        $scope.planemodels = [];
-        var counter = 0;
-        objectStore.openCursor().onsuccess = function (event) {
+            request.onerror = function (event) {
+                console.error('request.onerror');
+                alert("Database error: " + event.target.errorCode);
+                onSuccessCallback();
+                // Machen Sie etwas mit request.errorCode!
+            };
+            request.onsuccess = function (event) {
+                console.log('request.onsuccess');
+                db = request.result;
+                onSuccessCallback();
+                // Machen Sie etwas mit request.result!
+            };
 
-            //alert('objectStore.openCursor().onsuccess');
-            var cursor = event.target.result;
-            if (cursor) {
-                $scope.planemodels.push(cursor.value);
-                counter++;
-                cursor.continue();
+            request.onupgradeneeded = function (event) {
+                console.log('openDatabase start');
+                var db = event.target.result;
+
+                // Create an objectStore to hold information about our customers. We're
+                // going to use "ssn" as our key path because it's guaranteed to be
+                // unique.
+                var objectStore = db.createObjectStore("planemodels", { keyPath: "id" });
+
+                // Create an index to search customers by name. We may have duplicates
+                // so we can't use a unique index.
+                //objectStore.createIndex("name", "name", { unique: false });
+
+                // Create an index to search customers by email. We want to ensure that
+                // no two customers have the same email, so use a unique index.
+                //objectStore.createIndex("email", "email", { unique: true });
+
+                objectStore.createIndex("id", "id", { unique: true });
+
+                // Store values in the newly created objectStore.
+                for (var i in planemodels) {
+                    objectStore.add(planemodels[i]);
+                }
+                console.log('openDatabase end');
             }
-            else {
-                //cusor has no more items
-                console.log("showList - loaded " + counter + " items");
-                $scope.$apply();
-            }
+        }
+    }
+
+//    $scope.saveDatabase = function () {
+//
+//        var transaction = db.transaction(["planemodels"], "readwrite");
+//// Note: Older experimental implementations use the deprecated constant IDBTransaction.READ_WRITE instead of "readwrite".
+//// In case you want to support such an implementation, you can just write:
+//// var transaction = db.transaction(["customers"], IDBTransaction.READ_WRITE);
+//
+//        // Do something when all the data is added to the database.
+//        transaction.oncomplete = function (event) {
+//            console.log('transaction.oncomplete');
+//            alert("All done!");
+//        };
+//
+//        transaction.onerror = function (event) {
+//            console.error('transaction.onerror');
+//            // Don't forget to handle errors!
+//        };
+//
+//        //var objectStore = transaction.objectStore("planemodels");
+//        var objectStore = getObjectStore("planemodels", "readonly");
+//
+//
+//        for (var i in planemodels) {
+//            var request = objectStore.add(planemodels[i]);
+//            request.onsuccess = function (event) {
+//                console.log('request.onsuccess');
+//                // event.target.result == customerData[i].ssn;
+//            };
+//            request.onerror = function (event) {
+//                console.error('request.onerror');
+//                // event.target.result == customerData[i].ssn;
+//            };
+//        }
+//
+//    };
+//
+//    $scope.showList = function () {
+//        //alert('showList was called');
+//
+//        //$scope.customers = [];
+//
+//        var objectStore = getObjectStore("planemodels", "readonly");
+//
+//        var counter = 0;
+//        objectStore.openCursor().onsuccess = function (event) {
+//
+//            //alert('objectStore.openCursor().onsuccess');
+//            var cursor = event.target.result;
+//            if (cursor) {
+//                $scope.planemodels.push(cursor.value);
+//                counter++;
+//                cursor.continue();
+//
+//            }
+//            else {
+//                //cusor has no more items
+//                //-> notify angularJS to reload
+//                alert("showList - loaded " + counter + " items");
+//                $scope.$apply();
+//            }
+//        };
+//    };
+
+
+    $scope.showObjectStores = function () {
+        const dbName = "the_name";
+        var request = window.indexedDB.open(dbName, dbVersion);
+        request.onsuccess = function (event) {
+            console.log('request.onsuccess');
+            db = request.result;
+            //alert(JSON.stringify(db.objectStoreNames));
+            $scope.objectStoreNames = db.objectStoreNames;
         };
+
     };
 
 
-    $scope.deleteAllPlanemodelsFromDatabase = function () {
+    $scope.deleteAllPlanemodelsFromDatabase3 = function () {
 
         var answer = confirm('do you want to delete all entries in planemodel?');
 
@@ -174,17 +280,19 @@ sdApp.controller('PlanemodelsListCtrl', function ($scope, $routeParams, $http) {
 
     };
 
+
+
     $scope.loadPlanemodels_web = function () {
         console.log("loadPlanemodels_web start");
         var url = '/planemodels.json';
         loadPlanemodels(url);
-    };
+    }
 
     $scope.loadPlanemodels_pg = function () {
         console.log("loadPlanemodels_pg start");
         var url = 'http://c.raceplanner.de/PG10xp/planemodels.json';
         loadPlanemodels(url);
-    };
+    }
 
     loadPlanemodels = function (url) {
         console.log("loadPlanemodels start");
@@ -229,30 +337,12 @@ sdApp.controller('PlanemodelsListCtrl', function ($scope, $routeParams, $http) {
             error(function (data, status, headers, config) {
                 console.log('error while importing from ' + url);
             });
+    }
 
 
-    };
-
-
-    $scope.savePlanemodel = function () {
-        console.log('manu ' + $scope.planemodelManufacturer);
-        console.log('model ' + $scope.planemodelModel);
-        console.log('icao ' + $scope.planemodelIcao);
-
-        if ($scope.planemodelManufacturer == "") {
-            alert('you need to enter a manufacturer');
-        }
-
-        if ($scope.planemodelModel == "") {
-            alert('you need to enter a model');
-        }
-
-        if ($scope.planemodelIcao == "") {
-            alert('you need to enter a ICAO Code');
-        }
-    };
-
-    initPlanemodels2();
-
+    getObjectStore = function (store_name, mode) {
+        var tx = db.transaction(store_name, mode);
+        return tx.objectStore(store_name);
+    }
 
 });

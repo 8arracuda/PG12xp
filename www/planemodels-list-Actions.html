@@ -13,19 +13,25 @@
 
 <br>
 <a class="btn btn-primary" ng-click="openDatabase()">open Database</a>
-<a class="btn btn-primary" ng-click="closeDatabase()">close Database</a>
-<a class="btn btn-primary" ng-click="saveDatabase()">save Database</a>
-<a class="btn btn-primary" ng-click="showList()">showList</a>
-<a class="btn btn-primary" ng-click="showObjectStores()">showObjectStores</a>
-<a class="btn btn-danger" ng-click="deleteAllPlanemodelsFromDatabase()">deleteAllPlanemodelsFromDatabase</a>
-<a class="btn btn-danger" ng-click="deleteAllPlanemodelsFromDatabase2()">deleteAllPlanemodelsFromDatabase2</a>
-<a class="btn btn-danger" ng-click="deleteAllPlanemodelsFromDatabase3()">deleteAllPlanemodelsFromDatabase3</a>
+<a class="btn btn-primary" ng-click="deleteAllPlanemodelsFromDatabase()">delete all Planemodels</a>
+
+<!--<a class="btn btn-primary" ng-click="saveDatabase()">save Database</a>-->
+<!--<a class="btn btn-primary" ng-click="showList()">showList</a>-->
+<!--<a class="btn btn-primary" ng-click="showObjectStores()">showObjectStores</a>-->
+<!--<a class="btn btn-danger" ng-click="deleteAllPlanemodelsFromDatabase3()">deleteAllPlanemodelsFromDatabase3</a>-->
+<!--<a class="btn btn-danger" ng-click="deleteAllPlanemodelsFromDatabase4()">deleteAllPlanemodelsFromDatabase4</a>-->
+
+
+
+<a class="btn btn-primary" ng-click="initPlanemodelsPage()">initPlanemodelsPage</a>
+
 <a class="btn btn-primary" ng-click="loadPlanemodels_web()">loadPlanemodelsFromJOSN_web</a>
 <a class="btn btn-primary" ng-click="loadPlanemodels_pg()">loadPlanemodelsFromJOSN_pg</a>
 
-<br>
-
-<a class="btn btn-success" ng-show="databaseConnected==true">DB is connected</a>
-<a class="btn btn-danger" ng-show="databaseConnected==false">DB is not connected</a>
-
 <!--</div>-->
+
+<div class="navbar navbar-app navbar-absolute-bottom">
+    <div class="btn-group justified">
+        {{ planemodels.length }} planemodels
+    </div>
+</div>
