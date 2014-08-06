@@ -4,9 +4,18 @@
         <div class="scrollable-content">
 
             <ul class="nav nav-tabs">
-                <li ng-class="{active: tab == 1}"><a ng-click="tab = 1">Actions</a></li>
-                <li ng-class="{active: tab == 2}"><a ng-click="tab = 2">Planemodels</a></li>
-                <li ng-class="{active: tab == 3}"><a ng-click="tab = 3">Export</a></li>
+                <li ng-class="{active: tab == 1}">
+                    <a ng-click="tab = 1">Actions</a>
+                </li>
+                <li ng-class="{active: tab == 2}">
+                    <a ng-click="tab = 2">list Planemodels</a>
+                </li>
+                <li ng-class="{active: tab == 3}">
+                    <a ng-click="tab = 3"><i class="fa fa-plus"></i> add planemodel</a>
+                </li>
+                <li ng-class="{active: tab == 4}">
+                    <a ng-click="tab = 4">Export</a>
+                </li>
             </ul>
 
             <div class="tab-content">
@@ -28,7 +37,7 @@
                      id="Tab2"
                      exclusion-group="myTabs">
 
-                    <div ng-include src='"planemodels-list_Planemodels.html"'></div>
+                    <div ng-include src='"planemodels-list-Planemodels.html"'></div>
 
                 </div>
 
@@ -36,6 +45,16 @@
                      toggleable
                      ng-class="{active: tab == 3}"
                      id="Tab3"
+                     exclusion-group="myTabs">
+
+                    <div ng-include src='"planemodels-list-AddPlanemodel.html"'></div>
+
+                </div>
+
+                <div class="tab-pane"
+                     toggleable
+                     ng-class="{active: tab == 4}"
+                     id="Tab4"
                      exclusion-group="myTabs">
 
                     <div ng-include src='"planemodels-list-Export.html"'></div>
