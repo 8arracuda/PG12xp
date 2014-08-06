@@ -10,11 +10,9 @@ sdApp.controller('PlanemodelsListCtrl', function ($scope, $routeParams, $http) {
     const dbName = "planemodels";
     const dbVersion = 1;
 
-    $scope.databaseConnected = false;
-
-//    $scope.planemodel_manufacturer = "";
-//    $scope.planemodel_model = "";
-//    $scope.planemodel_icao = "";
+    $scope.planemodelManufacturer = "";
+    $scope.planemodelModel = "";
+    $scope.planemodelIcao = "";
 
 
     const planemodels = [
@@ -53,7 +51,7 @@ sdApp.controller('PlanemodelsListCtrl', function ($scope, $routeParams, $http) {
     };
 
 
-    initPlanemodels2 = function () {
+    initPlanemodels = function () {
         //console.log('openDatabase start');
 
         if (!window.indexedDB) {
@@ -239,20 +237,79 @@ sdApp.controller('PlanemodelsListCtrl', function ($scope, $routeParams, $http) {
         console.log('model ' + $scope.planemodelModel);
         console.log('icao ' + $scope.planemodelIcao);
 
+        var willAbort = false;
+
         if ($scope.planemodelManufacturer == "") {
             alert('you need to enter a manufacturer');
+            willAbort = true;
         }
 
         if ($scope.planemodelModel == "") {
             alert('you need to enter a model');
+            willAbort = true;
         }
 
         if ($scope.planemodelIcao == "") {
             alert('you need to enter a ICAO Code');
+            willAbort = true;
         }
+
+
+
+        if (willAbort == true) {
+            return -1;
+        } else {
+
+        addPlanemodelToObjectStore($scope.planemodelManufacturer, $scope.planemodelModel, $scope.planemodelIcao);
+
+        }
+
     };
 
-    initPlanemodels2();
+    addPlanemodelToObjectStore = function(manufacturer, model, icao) {
+        console.log('addPlanemodelToObjectStore start');
+
+
+        var request = window.indexedDB.open(dbName, dbVersion);
+
+        request.onerror = function (event) {
+            console.error('request.onerror');
+            alert("Database error: " + event.target.errorCode);
+        };
+        request.onsuccess = function (event) {
+            console.log('request.onsuccess');
+            db = request.result;
+
+            var transaction = db.transaction("planemodels", "readwrite");
+            var objectStore = transaction.objectStore("planemodels");
+
+            transaction.oncomplete = function (event) {
+                console.log('add - transaction.oncomplete');
+
+            };
+
+            transaction.onerror = function (event) {
+                console.error('add - transaction.onerror');
+            };
+
+            //add planemodel
+            var newPlanemodel = {};
+
+            newPlanemodel.id = 42;
+            newPlanemodel.manufacturer = manufacturer;
+            newPlanemodel.model= model;
+            newPlanemodel.icao = icao;
+
+            objectStore.add(newPlanemodel);
+
+
+
+            db.close();
+        };
+    }
+
+
+    initPlanemodels();
 
 
 });
