@@ -1,7 +1,12 @@
 <div ng-controller="AddEditPlanemodelCtrl">
 
     <div content-for="title">
-        <span>Add Planemodel</span>
+        <span>{{ titleString }}</span>
+    </div>
+
+    <div content-for="navbarAction_left">
+        <a href="#/showPlanemodels" class="btn btn-navbar">
+            <i class="fa fa-backward"></i> back</a>
     </div>
 
     <div content-for="navbarAction">
@@ -10,16 +15,20 @@
         </div>
     </div>
 
+    <div ng-show="editMode">edit<br></div>
 
     manufacturer<br>
-    <input ng-model="$parent.planemodelManufacturer" type="text"/><br>
+    <input ng-show="!editMode" ng-model="$parent.planemodelManufacturer" type="text"/><br>
+    <input ng-show="editMode" ng-model="planemodel.manufacturer" type="text"/><br>
 
     model<br>
-    <input ng-model="$parent.planemodelModel" type="text"/><br>
+    <input ng-show="!editMode" ng-model="$parent.planemodelModel" type="text"/><br>
+    <input ng-show="editMode" ng-model="planemodel.model" type="text"/><br>
 
 
     ICAO-Code<br>
-    <input ng-model="$parent.planemodelIcao" type="text"/><br>
+    <input ng-show="!editMode" ng-model="$parent.planemodelIcao" type="text"/><br>
+    <input ng-show="editMode" ng-model="planemodel.icao" type="text"/><br>
 
     <a ng-click="savePlanemodel()" class="btn btn-primary">
         save in database

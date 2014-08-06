@@ -60,5 +60,4 @@ sdApp.config(function ($routeProvider) {
             redirectTo: '/showPlanes'
         });
 
-
 });
