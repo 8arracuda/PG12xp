@@ -38,21 +38,11 @@ sdApp.config(function ($routeProvider) {
         }).
         when('/addPlanemodel/', {
             templateUrl: 'addEditPlanemodel.html',
-            controller: 'AddEditPlanemodelCtrl',
-            resolve: {
-                editMode: function () {
-                    return false;
-                }
-            }
+            controller: 'AddEditPlanemodelCtrl'
         }).
         when('/editPlanemodel/:planemodelId', {
             templateUrl: 'addEditPlanemodel.html',
-            controller: 'AddEditPlanemodelCtrl',
-            resolve: {
-                editMode: function () {
-                    return true;
-                }
-            }
+            controller: 'AddEditPlanemodelCtrl'
         }).
         when('/selectPlanemodel/', {
             templateUrl: 'selectPlanemodel.html',
