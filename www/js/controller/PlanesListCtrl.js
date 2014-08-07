@@ -128,7 +128,7 @@ sdApp.controller('PlanesListCtrl', function ($scope, $routeParams, $http, dbPara
 
     $scope.loadPlanes_pg = function () {
         console.log("loadPlanes_pg start");
-        var url = 'http://c.raceplanner.de/PG10xp/planes.json';
+        var url = 'http://c.raceplanner.de/PG12xp/planes.json';
         loadplanes(url);
     };
 

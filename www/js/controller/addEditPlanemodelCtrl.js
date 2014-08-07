@@ -2,15 +2,13 @@ sdApp.controller('AddEditPlanemodelCtrl', function ($scope, $routeParams, $http,
 
     $scope.planemodels = [];
 
-    dbName = dbParams.dbName();
-    dbVersion = dbParams.dbVersion();
     $scope.planemodelId = $routeParams.planemodelId;
 
     addPlanemodelToObjectStore = function (manufacturer, model, icao) {
         console.log('addPlanemodelToObjectStore start');
 
 
-        var request = window.indexedDB.open(dbName, dbVersion);
+        var request = window.indexedDB.open(dbParams.dbName(), dbParams.dbVersion());
 
         request.onerror = function (event) {
             console.error('request.onerror');
@@ -50,7 +48,7 @@ sdApp.controller('AddEditPlanemodelCtrl', function ($scope, $routeParams, $http,
     loadPlanemodelById = function (planemodelId) {
         console.log('loadPlanemodelById start');
 
-        var request = indexedDB.open(dbName, dbVersion);
+        var request = indexedDB.open(dbParams.dbName(), dbParams.dbVersion());
 
         request.onsuccess = function (event) {
             var db = event.target.result;
@@ -102,7 +100,7 @@ sdApp.controller('AddEditPlanemodelCtrl', function ($scope, $routeParams, $http,
             return -1;
         } else {
 
-            var request = indexedDB.open(dbName, dbVersion);
+            var request = indexedDB.open(dbParams.dbName(), dbParams.dbVersion());
 
             request.onsuccess = function (event) {
                 var db = event.target.result;
@@ -120,7 +118,7 @@ sdApp.controller('AddEditPlanemodelCtrl', function ($scope, $routeParams, $http,
     };
 
     $scope.deletePlanemodel = function() {
-        var request = indexedDB.open(dbName, dbVersion);
+        var request = indexedDB.open(dbParams.dbName(), dbParams.dbVersion());
 
         request.onsuccess = function (event) {
             var db = event.target.result;

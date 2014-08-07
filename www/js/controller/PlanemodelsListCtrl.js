@@ -190,7 +190,7 @@ sdApp.controller('PlanemodelsListCtrl', function ($scope, $routeParams, $http, d
 
     $scope.loadPlanemodels_pg = function () {
         console.log("loadPlanemodels_pg start");
-        var url = 'http://c.raceplanner.de/PG10xp/planemodels.json';
+        var url = 'http://c.raceplanner.de/PG12xp/planemodels.json';
         loadPlanemodels(url);
     };
 
