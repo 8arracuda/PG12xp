@@ -8,7 +8,7 @@ sdApp.controller('PlanemodelsListTestCtrl', function ($scope, $routeParams, $htt
     $scope.planemodels = [];
 
     const dbName = "planemodels";
-    const dbVersion = 1;
+    const dbVersion = 2;
 
     $scope.databaseConnected = false;
 
@@ -152,7 +152,12 @@ sdApp.controller('PlanemodelsListTestCtrl', function ($scope, $routeParams, $htt
                 // no two customers have the same email, so use a unique index.
                 //objectStore.createIndex("email", "email", { unique: true });
 
-                objectStore.createIndex("id", "id", { unique: true });
+                if (event.oldVersion > 0) {
+                    db.deleteObjectStore("planemodels");
+                    alert('deleteObjectStore');
+                }
+
+                var objectStore = db.createObjectStore("planemodels", { keyPath: "id", autoIncrement:true });
 
                 // Store values in the newly created objectStore.
                 for (var i in planemodels) {

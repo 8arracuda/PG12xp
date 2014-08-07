@@ -18,18 +18,22 @@
     <div ng-show="editMode">edit<br></div>
 
     manufacturer<br>
-    <input ng-model="$parent.planemodelManufacturer" type="text"/><br>
+    <input ng-model="planemodelManufacturer" type="text"/><br>
 
 
     model<br>
-    <input ng-model="$parent.planemodelModel" type="text"/><br>
+    <input ng-model="planemodelModel" type="text"/><br>
 
 
     ICAO-Code<br>
-    <input ng-model="$parent.planemodelIcao" type="text"/><br>
+    <input ng-model="planemodelIcao" type="text"/><br>
 
-    <a ng-click="savePlanemodel()" class="btn btn-primary">
+    <a ng-show="!editMode" ng-click="savePlanemodel()" class="btn btn-primary">
         save in database
     </a>
+    <a ng-show="editMode" ng-click="updatePlanemodel()" class="btn btn-primary">
+        update in database
+    </a>
+
 
 </div>

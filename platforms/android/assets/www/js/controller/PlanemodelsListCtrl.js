@@ -52,7 +52,7 @@ sdApp.controller('PlanemodelsListCtrl', function ($scope, $routeParams, $http) {
 
 
     initPlanemodels = function () {
-        //console.log('openDatabase start');
+        console.log('initPlanemodels start');
 
         if (!window.indexedDB) {
             window.alert("Ihr Browser unterstützt keine stabile Version von IndexedDB. Dieses und jenes Feature wird Ihnen nicht zur Verfügung stehen.");
@@ -106,13 +106,13 @@ sdApp.controller('PlanemodelsListCtrl', function ($scope, $routeParams, $http) {
 
     $scope.showList = function () {
 
+        $scope.planemodels = [];
         var objectStoreName = "planemodels";
 
         var tx = db.transaction(objectStoreName, "readonly");
         var objectStore = tx.objectStore(objectStoreName);
 
 
-        $scope.planemodels = [];
         var counter = 0;
         objectStore.openCursor().onsuccess = function (event) {
 

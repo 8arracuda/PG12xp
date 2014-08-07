@@ -36,6 +36,14 @@ sdApp.config(function ($routeProvider) {
             templateUrl: 'selectPlanemodelForPlane.html',
             controller: 'SelectPlanemodelForPlaneCtrl'
         }).
+        when('/addPlanemodel/', {
+            templateUrl: 'addEditPlanemodel.html',
+            controller: 'AddEditPlanemodelCtrl'
+        }).
+        when('/editPlanemodel/:planemodelId', {
+            templateUrl: 'addEditPlanemodel.html',
+            controller: 'AddEditPlanemodelCtrl'
+        }).
         when('/selectPlanemodel/', {
             templateUrl: 'selectPlanemodel.html',
             controller: 'SelectPlanemodelCtrl'
@@ -51,9 +59,5 @@ sdApp.config(function ($routeProvider) {
         otherwise({
             redirectTo: '/showPlanes'
         });
-
-
-
-
 
 });

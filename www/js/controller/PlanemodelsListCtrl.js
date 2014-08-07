@@ -8,7 +8,7 @@ sdApp.controller('PlanemodelsListCtrl', function ($scope, $routeParams, $http) {
     $scope.planemodels = [];
 
     const dbName = "planemodels";
-    const dbVersion = 1;
+    const dbVersion = 2;
 
     $scope.planemodelManufacturer = "";
     $scope.planemodelModel = "";
@@ -76,13 +76,20 @@ sdApp.controller('PlanemodelsListCtrl', function ($scope, $routeParams, $http) {
             };
 
             request.onupgradeneeded = function (event) {
-                console.log('openDatabase start');
+                console.log('onupgradeneeded start');
+                console.log('onupgradeneeded - oldVersion:' + event.oldVersion);
                 var db = event.target.result;
 
                 // Create an objectStore to hold information about our customers. We're
                 // going to use "ssn" as our key path because it's guaranteed to be
                 // unique.
-                var objectStore = db.createObjectStore("planemodels", { keyPath: "id" });
+
+                if (event.oldVersion > 0) {
+                    db.deleteObjectStore("planemodels");
+                    alert('deleteObjectStore');
+                }
+
+                var objectStore = db.createObjectStore("planemodels", { keyPath: "id", autoIncrement:true });
 
                 // Create an index to search customers by name. We may have duplicates
                 // so we can't use a unique index.
@@ -232,39 +239,39 @@ sdApp.controller('PlanemodelsListCtrl', function ($scope, $routeParams, $http) {
     };
 
 
-    $scope.savePlanemodel = function () {
-        console.log('manu ' + $scope.planemodelManufacturer);
-        console.log('model ' + $scope.planemodelModel);
-        console.log('icao ' + $scope.planemodelIcao);
-
-        var willAbort = false;
-
-        if ($scope.planemodelManufacturer == "") {
-            alert('you need to enter a manufacturer');
-            willAbort = true;
-        }
-
-        if ($scope.planemodelModel == "") {
-            alert('you need to enter a model');
-            willAbort = true;
-        }
-
-        if ($scope.planemodelIcao == "") {
-            alert('you need to enter a ICAO Code');
-            willAbort = true;
-        }
-
-
-
-        if (willAbort == true) {
-            return -1;
-        } else {
-
-        addPlanemodelToObjectStore($scope.planemodelManufacturer, $scope.planemodelModel, $scope.planemodelIcao);
-
-        }
-
-    };
+//    $scope.savePlanemodel = function () {
+//        console.log('manu ' + $scope.planemodelManufacturer);
+//        console.log('model ' + $scope.planemodelModel);
+//        console.log('icao ' + $scope.planemodelIcao);
+//
+//        var willAbort = false;
+//
+//        if ($scope.planemodelManufacturer == "") {
+//            alert('you need to enter a manufacturer');
+//            willAbort = true;
+//        }
+//
+//        if ($scope.planemodelModel == "") {
+//            alert('you need to enter a model');
+//            willAbort = true;
+//        }
+//
+//        if ($scope.planemodelIcao == "") {
+//            alert('you need to enter a ICAO Code');
+//            willAbort = true;
+//        }
+//
+//
+//
+//        if (willAbort == true) {
+//            return -1;
+//        } else {
+//
+//        addPlanemodelToObjectStore($scope.planemodelManufacturer, $scope.planemodelModel, $scope.planemodelIcao);
+//
+//        }
+//
+//    };
 
     addPlanemodelToObjectStore = function(manufacturer, model, icao) {
         console.log('addPlanemodelToObjectStore start');

@@ -30,6 +30,7 @@
 /users/michael/AB-Code/PG12xp/platforms/android/assets/_where-is-www.txt \
 /users/michael/AB-Code/PG12xp/platforms/android/assets/www \
 /users/michael/AB-Code/PG12xp/platforms/android/assets/www/about.html \
+/users/michael/AB-Code/PG12xp/platforms/android/assets/www/addEditPlanemodel.html \
 /users/michael/AB-Code/PG12xp/platforms/android/assets/www/cordova.js \
 /users/michael/AB-Code/PG12xp/platforms/android/assets/www/cordova_plugins.js \
 /users/michael/AB-Code/PG12xp/platforms/android/assets/www/css \
@@ -42,7 +43,6 @@
 /users/michael/AB-Code/PG12xp/platforms/android/assets/www/index_backup.html \
 /users/michael/AB-Code/PG12xp/platforms/android/assets/www/js \
 /users/michael/AB-Code/PG12xp/platforms/android/assets/www/planemodels-list-Actions.html \
-/users/michael/AB-Code/PG12xp/platforms/android/assets/www/planemodels-list-AddPlanemodel.html \
 /users/michael/AB-Code/PG12xp/platforms/android/assets/www/planemodels-list-Export.html \
 /users/michael/AB-Code/PG12xp/platforms/android/assets/www/planemodels-list-Planemodels.html \
 /users/michael/AB-Code/PG12xp/platforms/android/assets/www/planemodels-list.html \
@@ -84,6 +84,7 @@
 /users/michael/AB-Code/PG12xp/platforms/android/assets/www/js/angularJS_1.2.18/angular.min.js \
 /users/michael/AB-Code/PG12xp/platforms/android/assets/www/js/angularJS_1.2.18/angular.min.js.map \
 /users/michael/AB-Code/PG12xp/platforms/android/assets/www/js/controller/AboutCtrl.js \
+/users/michael/AB-Code/PG12xp/platforms/android/assets/www/js/controller/AddEditPlanemodelCtrl.js \
 /users/michael/AB-Code/PG12xp/platforms/android/assets/www/js/controller/EditLandingsCtrl.js \
 /users/michael/AB-Code/PG12xp/platforms/android/assets/www/js/controller/EditPlaneCtrl.js \
 /users/michael/AB-Code/PG12xp/platforms/android/assets/www/js/controller/ExportCtrl.js \

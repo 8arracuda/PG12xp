@@ -4,7 +4,7 @@ sdApp.controller('SelectPlanemodelCtrl', function ($scope, $routeParams, $http) 
     console.log("SelectPlanemodelCtrl");
 
     const dbName = "planemodels";
-    const dbVersion = 1;
+    const dbVersion = 2;
 
 
     $scope.initPlanemodels = function () {
@@ -39,7 +39,12 @@ sdApp.controller('SelectPlanemodelCtrl', function ($scope, $routeParams, $http) 
                 // Create an objectStore to hold information about our customers. We're
                 // going to use "ssn" as our key path because it's guaranteed to be
                 // unique.
-                var objectStore = db.createObjectStore("planemodels", { keyPath: "id" });
+                if (event.oldVersion > 0) {
+                    db.deleteObjectStore("planemodels");
+                    alert('deleteObjectStore');
+                }
+
+                var objectStore = db.createObjectStore("planemodels", { keyPath: "id", autoIncrement:true });
 
                 // Create an index to search customers by name. We may have duplicates
                 // so we can't use a unique index.
