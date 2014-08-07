@@ -28,7 +28,6 @@
     <link rel="stylesheet" href="css/mobile-angular-ui-base.css"/>
     <link rel="stylesheet" type="text/css" href="css/index.css"/>
 
-
     <meta name="msapplication-tap-highlight" content="no"/>
     <title>PG12xp</title>
 </head>
@@ -41,14 +40,21 @@
     <div class="scrollable">
         <div class="scrollable-content">
             <div class="list-group" toggle="off" bubble target="mainSidebar">
-                <a class="list-group-item" href="#/showPlanes">show planes <i
-                        class="fa fa-chevron-right pull-right"></i></a>
-                <a class="list-group-item" href="#/showPlanemodels">show planemodels<i
-                        class="fa fa-chevron-right pull-right"></i></a>
-                <a class="list-group-item" href="#/showPlanemodelsTest">show planemodels (Test)<i
-                        class="fa fa-chevron-right pull-right"></i></a>
-                <a class="list-group-item" href="#/export">export <i class="fa fa-chevron-right pull-right"></i></a>
-                <a class="list-group-item" href="#/about">about<i class="fa fa-chevron-right pull-right"></i></a>
+                <a class="list-group-item" href="#/showPlanes">show planes
+                    <i class="fa fa-chevron-right pull-right"></i>
+                </a>
+                <a class="list-group-item" href="#/showPlanemodels">show planemodels
+                    <i class="fa fa-chevron-right pull-right"></i>
+                </a>
+                <a class="list-group-item" href="#/showPlanemodelsTest">show planemodels (Test)
+                    <i class="fa fa-chevron-right pull-right"></i>
+                </a>
+                <a class="list-group-item" href="#/export">export
+                    <i class="fa fa-chevron-right pull-right"></i>
+                </a>
+                <a class="list-group-item" href="#/about">about
+                    <i class="fa fa-chevron-right pull-right"></i>
+                </a>
             </div>
         </div>
     </div>
@@ -70,9 +76,9 @@
         </div>
 
         <!--<div class="btn-group pull-left">-->
-            <!--<div ng-click="toggle('mainSidebar')" class="btn btn-navbar sidebar-toggle">-->
-                <!--<i class="fa fa-bars"></i> Menu-->
-            <!--</div>-->
+        <!--<div ng-click="toggle('mainSidebar')" class="btn btn-navbar sidebar-toggle">-->
+        <!--<i class="fa fa-bars"></i> Menu-->
+        <!--</div>-->
         <!--</div>-->
 
         <div class="btn-group pull-right" yield-to="navbarAction">
@@ -83,7 +89,7 @@
     </div>
 
     <div class="app-body">
-        <ng-view class="app-content"></ng-view>
+        <div ng-view class="app-content"></div>
     </div>
 
 </div>
@@ -110,7 +116,6 @@
 <script type="text/javascript" src="js/controller/EditLandingsCtrl.js"></script>
 <script type="text/javascript" src="js/controller/AboutCtrl.js"></script>
 <script type="text/javascript" src="js/controller/AddEditPlanemodelCtrl.js"></script>
-
 
 <script type="text/javascript">
     app.initialize();

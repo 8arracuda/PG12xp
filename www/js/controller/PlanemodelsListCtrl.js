@@ -1,5 +1,8 @@
 sdApp.controller('PlanemodelsListCtrl', function ($scope, $routeParams, $http) {
 
+//    $scope.stringForTitle = 'foo2';
+//    $scope.stringForRightButton = 'bar2';
+
     $scope.tab = 1;
 
     $scope.planemodelIndex = 0;
@@ -37,6 +40,26 @@ sdApp.controller('PlanemodelsListCtrl', function ($scope, $routeParams, $http) {
         {"id": 24, "manufacturer": "Cessna", "model": "208B Super Cargomaster", "icao": "C208", "wake": "L", "length_m": "11,5", "span_m": "15,9", "height_m": "4,3", "wingarea_m2": "26", "max_fuel_kg": "-1", "mtow_kg": "3970", "empty_weight_pfd": "-1", "max_weight_pfd": "-1", "max_passengers": "0", "range_km": "2000", "cruise_speed_kmh": "317", "field_length_landing_m": "290", "field_length_takeoff_m": "417", "$$hashKey": "024"}
     ];
 
+
+    $scope.enableTab1 = function () {
+        $scope.tab = 1;
+        $scope.stringForTitle = 'list';
+        $scope.stringForRightButton = 'LST';
+        console.log("enableTab1 end");
+    }
+
+    $scope.enableTab2 = function () {
+        $scope.tab = 2;
+        $scope.stringForTitle = 'Actions';
+        $scope.stringForRightButton = 'ACT';
+        console.log("enableTab2 end");
+    }
+
+    $scope.enableTab3 = function () {
+        $scope.tab = 3;
+        $scope.stringForTitle = 'Export';
+        $scope.stringForRightButton = 'EXP';
+    }
 
     $scope.planemodel_next = function () {
         console.log("planemodel_next");
@@ -89,7 +112,7 @@ sdApp.controller('PlanemodelsListCtrl', function ($scope, $routeParams, $http) {
                     alert('deleteObjectStore');
                 }
 
-                var objectStore = db.createObjectStore("planemodels", { keyPath: "id", autoIncrement:true });
+                var objectStore = db.createObjectStore("planemodels", { keyPath: "id", autoIncrement: true });
 
                 // Create an index to search customers by name. We may have duplicates
                 // so we can't use a unique index.
@@ -273,7 +296,7 @@ sdApp.controller('PlanemodelsListCtrl', function ($scope, $routeParams, $http) {
 //
 //    };
 
-    addPlanemodelToObjectStore = function(manufacturer, model, icao) {
+    addPlanemodelToObjectStore = function (manufacturer, model, icao) {
         console.log('addPlanemodelToObjectStore start');
 
 
@@ -304,11 +327,10 @@ sdApp.controller('PlanemodelsListCtrl', function ($scope, $routeParams, $http) {
 
             newPlanemodel.id = 42;
             newPlanemodel.manufacturer = manufacturer;
-            newPlanemodel.model= model;
+            newPlanemodel.model = model;
             newPlanemodel.icao = icao;
 
             objectStore.add(newPlanemodel);
-
 
 
             db.close();

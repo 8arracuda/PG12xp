@@ -1,5 +1,8 @@
 sdApp.controller('PlanemodelsListTestCtrl', function ($scope, $routeParams, $http) {
 
+    $scope.stringForTitle = 'foo';
+    $scope.stringForRightButton = 'bar';
+
     $scope.tab = 1;
 
     $scope.planemodelIndex = 0;
@@ -80,18 +83,12 @@ sdApp.controller('PlanemodelsListTestCtrl', function ($scope, $routeParams, $htt
                 console.log('openDatabase start');
                 var db = event.target.result;
 
-                // Create an objectStore to hold information about our customers. We're
-                // going to use "ssn" as our key path because it's guaranteed to be
-                // unique.
-                var objectStore = db.createObjectStore("planemodels", { keyPath: "id" });
+                if (event.oldVersion > 0) {
+                    db.deleteObjectStore("planemodels");
+                    alert('deleteObjectStore');
+                }
 
-                // Create an index to search customers by name. We may have duplicates
-                // so we can't use a unique index.
-                //objectStore.createIndex("name", "name", { unique: false });
-
-                // Create an index to search customers by email. We want to ensure that
-                // no two customers have the same email, so use a unique index.
-                //objectStore.createIndex("email", "email", { unique: true });
+                var objectStore = db.createObjectStore("planemodels", { keyPath: "id", autoIncrement:true });
 
                 objectStore.createIndex("id", "id", { unique: true });
 
@@ -138,19 +135,6 @@ sdApp.controller('PlanemodelsListTestCtrl', function ($scope, $routeParams, $htt
             request.onupgradeneeded = function (event) {
                 console.log('openDatabase start');
                 var db = event.target.result;
-
-                // Create an objectStore to hold information about our customers. We're
-                // going to use "ssn" as our key path because it's guaranteed to be
-                // unique.
-                var objectStore = db.createObjectStore("planemodels", { keyPath: "id" });
-
-                // Create an index to search customers by name. We may have duplicates
-                // so we can't use a unique index.
-                //objectStore.createIndex("name", "name", { unique: false });
-
-                // Create an index to search customers by email. We want to ensure that
-                // no two customers have the same email, so use a unique index.
-                //objectStore.createIndex("email", "email", { unique: true });
 
                 if (event.oldVersion > 0) {
                     db.deleteObjectStore("planemodels");

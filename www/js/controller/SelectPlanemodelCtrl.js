@@ -1,5 +1,7 @@
 sdApp.controller('SelectPlanemodelCtrl', function ($scope, $routeParams, $http) {
 
+    $scope.stringForTitle = 'foo2';
+    $scope.stringForRightButton = 'bar2';
 
     console.log("SelectPlanemodelCtrl");
 

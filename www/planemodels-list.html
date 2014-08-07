@@ -3,15 +3,25 @@
     <div class="scrollable">
         <div class="scrollable-content">
 
+            <div content-for="title">
+                <span>{{ stringForTitle }}</span>
+            </div>
+
+            <div content-for="navbarAction">
+                <div class="btn btn-navbar">
+                    <i class="fa fa-plus"></i>{{ stringForRightButton }}
+                </div>
+            </div>
+
             <ul class="nav nav-tabs">
                 <li ng-class="{active: tab == 1}">
-                    <a ng-click="tab = 1">list Planemodels</a>
+                    <a ng-click="enableTab1()">list Planemodels</a>
                 </li>
                 <li ng-class="{active: tab == 2}">
-                    <a ng-click="tab = 2">Actions</a>
+                    <a ng-click="enableTab2()">Actions</a>
                 </li>
                 <li ng-class="{active: tab == 3}">
-                    <a ng-click="tab = 3">Export</a>
+                    <a ng-click="enableTab3()">Export</a>
                 </li>
             </ul>
 
@@ -25,7 +35,6 @@
                      exclusion-group="myTabs">
 
                     <div ng-include src='"planemodels-list-Planemodels.html"'></div>
-
                 </div>
 
                 <div class="tab-pane"
@@ -35,7 +44,6 @@
                      exclusion-group="myTabs">
 
                     <div ng-include src='"planemodels-list-Actions.html"'></div>
-
                 </div>
 
                 <div class="tab-pane"
@@ -45,7 +53,6 @@
                      exclusion-group="myTabs">
 
                     <div ng-include src='"planemodels-list-Export.html"'></div>
-
                 </div>
             </div>
         </div>

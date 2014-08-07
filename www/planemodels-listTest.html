@@ -1,47 +1,108 @@
-<div ng-controller="PlanemodelsListTestCtrl" xmlns="http://www.w3.org/1999/html">
+<div ng-controller="PlanemodelsListTestCtrl">
+    <!--<div ng-controller="PlanemodelsListTestCtrl" xmlns="http://www.w3.org/1999/html">-->
 
-    <div class="scrollable">
-        <div class="scrollable-content">
+    <div content-for="title">
+        <span>{{ stringForTitle }}</span>
+    </div>
 
-            <ul class="nav nav-tabs">
-                <li ng-class="{active: tab == 1}"><a ng-click="tab = 1">Actions</a></li>
-                <li ng-class="{active: tab == 2}"><a ng-click="tab = 2">Planemodels</a></li>
-                <li ng-class="{active: tab == 3}"><a ng-click="tab = 3">Export</a></li>
-            </ul>
+    <div content-for="navbarAction">
+        <div class="btn btn-navbar">
+            <i class="fa fa-plus"></i>{{ stringForRightButton }}
+        </div>
+    </div>
 
-            <div class="tab-content">
+    <ul class="nav nav-tabs">
+        <li ng-class="{active: tab == 1}"><a ng-click="tab = 1">Actions</a></li>
+        <li ng-class="{active: tab == 2}"><a ng-click="tab = 2">Planemodels</a></li>
+        <li ng-class="{active: tab == 3}"><a ng-click="tab = 3">Export</a></li>
+    </ul>
 
-                <div class="tab-pane"
-                     toggleable
-                     ng-class="{active: tab == 1}"
-                     id="Tab1"
-                     exclusion-group="myTabs">
+    <div class="tab-content">
 
-                    <div ng-include src='"planemodels-listTest-Actions.html"'></div>
+        <div class="tab-pane"
+             toggleable
+             ng-class="{active: tab == 1}"
+             id="Tab1"
+             exclusion-group="myTabs">
 
-                </div>
 
-                <div class="tab-pane"
-                     toggleable
-                     ng-class="{active: tab == 2}"
-                     default="active"
-                     id="Tab2"
-                     exclusion-group="myTabs">
+            <br>
+            <a class="btn btn-primary" ng-click="openDatabase()">open Database</a>
 
-                    <div ng-include src='"planemodels-listTest_Planemodels.html"'></div>
+            <!--<a class="btn btn-primary" ng-click="saveDatabase()">save Database</a>-->
+            <a class="btn btn-primary" ng-click="showList()">showList</a>
+            <a class="btn btn-primary" ng-click="showObjectStores()">showObjectStores</a>
+            <a class="btn btn-danger"
+               ng-click="deleteAllPlanemodelsFromDatabase3()">deleteAllPlanemodelsFromDatabase3</a>
+            <a class="btn btn-danger"
+               ng-click="deleteAllPlanemodelsFromDatabase4()">deleteAllPlanemodelsFromDatabase4</a>
 
-                </div>
+            <a class="btn btn-primary" ng-click="loadPlanemodels_web()">loadPlanemodelsFromJOSN_web</a>
+            <a class="btn btn-primary" ng-click="loadPlanemodels_pg()">loadPlanemodelsFromJOSN_pg</a>
 
-                <div class="tab-pane"
-                     toggleable
-                     ng-class="{active: tab == 3}"
-                     id="Tab3"
-                     exclusion-group="myTabs">
 
-                    <div ng-include src='"planemodels-listTest-Export.html"'></div>
+        </div>
 
+        <div class="tab-pane"
+             toggleable
+             ng-class="{active: tab == 2}"
+             default="active"
+             id="Tab2"
+             exclusion-group="myTabs">
+
+
+            Search Planemodels:<br>
+            <input ng-model="query" type="text" ng-change="planemodelIndex = 0"><br>
+
+            <br>
+            id: {{ planemodels[planemodelIndex].id }}<br>
+            manufacturer:<br>
+            <input ng-model="(planemodels|filter: query)[planemodelIndex].manufacturer" type="text"><br>
+            model:<br>
+            <input ng-model="(planemodels|filter: query)[planemodelIndex].model" type="text"><br>
+            ICAO:<br>
+            <input ng-model="(planemodels|filter: query)[planemodelIndex].icao" type="text"><br>
+
+            <a ng-click="planemodel_prev()"
+               ng-class="{disabled: planemodelIndex<1}"
+               class="btn btn-default btn-sm">
+
+                Previous
+            </a>
+
+            {{ planemodelIndex +1}} / {{ (planemodels|filter: query).length}}</li>
+
+            <a ng-click="planemodel_next()"
+               ng-class="{disabled: planemodelIndex>(planemodels|filter: query).length-2}"
+               class="btn btn-default btn-sm">
+
+                Next
+            </a>
+
+
+            <div class="navbar navbar-app navbar-absolute-bottom">
+                <div class="btn-group justified">
+                    <a ng-click="addPlanemodel()" class="btn btn-navbar"><i class="fa fa-plus"></i>add
+                        Planemodel</a>
                 </div>
             </div>
+
+        </div>
+
+        <div class="tab-pane"
+             toggleable
+             ng-class="{active: tab == 3}"
+             id="Tab3"
+             exclusion-group="myTabs">
+
+            Export Planes:
+            <p><input name="planes_export" type="text" value="{{ planemodelsString }}"></p>
+
+            <a ng-click="updateExportString()" class="btn btn-primary">
+                update export string
+            </a>
+
+
         </div>
     </div>
 </div>

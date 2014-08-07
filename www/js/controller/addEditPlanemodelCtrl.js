@@ -1,11 +1,10 @@
 sdApp.controller('AddEditPlanemodelCtrl', function ($scope, $routeParams, $http) {
 
-    $scope.planemodelIndex = 0;
-
     $scope.planemodels = [];
 
     const dbName = "planemodels";
-    const dbVersion = 1;
+    const dbVersion = 2;
+    $scope.planemodelId = $routeParams.planemodelId;
 
     addPlanemodelToObjectStore = function (manufacturer, model, icao) {
         console.log('addPlanemodelToObjectStore start');
@@ -30,12 +29,12 @@ sdApp.controller('AddEditPlanemodelCtrl', function ($scope, $routeParams, $http)
 
             transaction.onerror = function (event) {
                 console.error('add - transaction.onerror');
+                alert(JSON.stringify(event));
             };
 
             //add planemodel
             var newPlanemodel = {};
 
-            newPlanemodel.id = 42;
             newPlanemodel.manufacturer = manufacturer;
             newPlanemodel.model = model;
             newPlanemodel.icao = icao;
@@ -43,6 +42,7 @@ sdApp.controller('AddEditPlanemodelCtrl', function ($scope, $routeParams, $http)
             objectStore.add(newPlanemodel);
 
             db.close();
+            alert('planemodel has been saved');
         };
     }
 
@@ -66,13 +66,108 @@ sdApp.controller('AddEditPlanemodelCtrl', function ($scope, $routeParams, $http)
                 $scope.planemodelModel = planemodel.model;
                 $scope.planemodelIcao = planemodel.icao;
                 $scope.$apply();
-
             };
 
             request.onerror = function (event) {
                 console.log("Error Getting: ", event);
             };
         }
+    }
+
+
+    $scope.updatePlanemodel = function () {
+        console.log('id ' + $scope.planemodelId);
+        console.log('manu ' + $scope.planemodelManufacturer);
+        console.log('model ' + $scope.planemodelModel);
+        console.log('icao ' + $scope.planemodelIcao);
+
+        var willAbort = false;
+
+        if ($scope.planemodelManufacturer == "") {
+            alert('you need to enter a manufacturer');
+            willAbort = true;
+        }
+
+        if ($scope.planemodelModel == "") {
+            alert('you need to enter a model');
+            willAbort = true;
+        }
+
+        if ($scope.planemodelIcao == "") {
+            alert('you need to enter a ICAO Code');
+            willAbort = true;
+        }
+
+        if (willAbort == true) {
+            return -1;
+        } else {
+
+            var request = indexedDB.open(dbName, dbVersion);
+
+            request.onsuccess = function (event) {
+                var db = event.target.result;
+
+                var request = db.transaction(["planemodels"], "readwrite")
+                    .objectStore("planemodels")
+                    .delete(parseInt($routeParams.planemodelId));
+                request.onsuccess = function (event) {
+                    alert('planemodel was deleted');
+                    db.close();
+                    addPlanemodelToObjectStore($scope.planemodelManufacturer, $scope.planemodelModel, $scope.planemodelIcao);
+                }
+            };
+        }
+    };
+
+    $scope.deletePlanemodel = function() {
+        var request = indexedDB.open(dbName, dbVersion);
+
+        request.onsuccess = function (event) {
+            var db = event.target.result;
+
+            var request = db.transaction(["planemodels"], "readwrite")
+                .objectStore("planemodels")
+                .delete(parseInt($routeParams.planemodelId));
+            request.onsuccess = function (event) {
+                alert('planemodel was deleted');
+                db.close();
+                location.href = "#/showPlanemodels"
+            }
+        };
+    }
+
+    $scope.savePlanemodel = function () {
+        console.log('manu ' + $scope.planemodelManufacturer);
+        console.log('model ' + $scope.planemodelModel);
+        console.log('icao ' + $scope.planemodelIcao);
+
+        var willAbort = false;
+
+        if ($scope.planemodelManufacturer == "") {
+            alert('you need to enter a manufacturer');
+            willAbort = true;
+        }
+
+        if ($scope.planemodelModel == "") {
+            alert('you need to enter a model');
+            willAbort = true;
+        }
+
+        if ($scope.planemodelIcao == "") {
+            alert('you need to enter a ICAO Code');
+            willAbort = true;
+        }
+
+        if (willAbort == true) {
+            return -1;
+        } else {
+
+            addPlanemodelToObjectStore($scope.planemodelManufacturer, $scope.planemodelModel, $scope.planemodelIcao);
+            $scope.planemodelManufacturer = "";
+            $scope.planemodelModel = "";
+            $scope.planemodelIcao = "";
+        }
+
 
     }
 

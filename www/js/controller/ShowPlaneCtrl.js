@@ -1,5 +1,6 @@
 sdApp.controller('ShowPlaneCtrl', function ($scope, $routeParams, $http) {
 
+
     $scope.planemodels = JSON.parse(localStorage.getItem('planemodels'));
     $scope.planes = JSON.parse(localStorage.getItem('planes'));
 
@@ -37,11 +38,10 @@ sdApp.controller('ShowPlaneCtrl', function ($scope, $routeParams, $http) {
 
 
         var landingToRemove = $scope.selectedPlane.landings[index];
-        var answer = confirm('Landing ' + $scope.selectedPlane.landings[index].airport +  '(' + $scope.selectedPlane.landings[index].landingSpd + ') will be removed. This cannot be undone.');
+        var answer = confirm('Landing ' + $scope.selectedPlane.landings[index].airport + '(' + $scope.selectedPlane.landings[index].landingSpd + ') will be removed. This cannot be undone.');
 
 
         if (answer) {
-
 
 
             var position = $scope.selectedPlane.landings.indexOf(landingToRemove);
@@ -52,7 +52,7 @@ sdApp.controller('ShowPlaneCtrl', function ($scope, $routeParams, $http) {
         }
     }
 
-    $scope.addLanding = function() {
+    $scope.addLanding = function () {
         var newLanding = {
             'airport': $scope.stringAirport,
             'landingSpd': $scope.stringLandingSpd
