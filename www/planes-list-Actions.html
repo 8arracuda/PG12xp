@@ -1,41 +1,17 @@
-<div ng-controller="PlanesListCtrl" xmlns="http://www.w3.org/1999/html">
+
+<br>
+<a class="btn btn-primary" ng-click="openDatabase()">open Database</a><br>
+<a class="btn btn-primary" ng-click="deleteAllPlanesFromDatabase()">delete all Planes</a><br>
 
 
-<div content-for="title">
-        <span>Actions</span>
+
+<a class="btn btn-primary" ng-click="initPlanesPage()">initPlanesPage</a><br>
+<a class="btn btn-primary" ng-click="loadPlanes_web()">loadPlanesFromJOSN_web</a><br>
+<a class="btn btn-primary" ng-click="loadPlanes_pg()">loadPlanesFromJOSN_pg</a><br>
+
+
+<div class="navbar navbar-app navbar-absolute-bottom">
+    <div class="btn-group justified">
+        {{ planes.length }} planes
     </div>
-
-    <div content-for="navbarAction">
-        <div class="btn btn-navbar">
-            <i class="fa fa-plus"></i>PLA
-        </div>
-    </div>
-
-    <a ng-click="clearPlanesFromLocalStorage()"
-       class="btn btn-primary">
-        clearPlanesFromLocalStorage
-    </a>
-
-    <a ng-click="initPlanes()"
-       class="btn btn-primary">
-        init Planes
-    </a>
-
-    <a ng-click="savePlanes()"
-       class="btn btn-primary">
-        save Planes
-    </a>
-
-    <a ng-click="importPlanes()"
-       class="btn btn-primary">
-        import Planes
-    </a>
-
-
-
-    <a ng-click="updateArrayPlanemodels()"
-       class="btn btn-primary">
-        updateArrayPlanemodels</a>
-
-
 </div>

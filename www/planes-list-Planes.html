@@ -1,0 +1,15 @@
+<div class="list-group">
+
+    <div ng-repeat="plane in planes">
+        <a class="list-group-item" href="#/editPlane/{{plane.id}}">
+            {{ plane.reg }}
+            <i class="fa fa-chevron-right pull-right"></i>
+        </a>
+    </div>
+</div>
+
+<div class="navbar navbar-app navbar-absolute-bottom">
+    <a ng-href="#/addPlane" class="btn btn-navbar ">
+        <i class="fa fa-plus"></i> add Plane
+    </a>
+</div>

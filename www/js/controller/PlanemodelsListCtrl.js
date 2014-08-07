@@ -1,8 +1,5 @@
 sdApp.controller('PlanemodelsListCtrl', function ($scope, $routeParams, $http) {
 
-//    $scope.stringForTitle = 'foo2';
-//    $scope.stringForRightButton = 'bar2';
-
     $scope.tab = 1;
 
     $scope.planemodelIndex = 0;
@@ -43,16 +40,14 @@ sdApp.controller('PlanemodelsListCtrl', function ($scope, $routeParams, $http) {
 
     $scope.enableTab1 = function () {
         $scope.tab = 1;
-        $scope.stringForTitle = 'list';
+        $scope.stringForTitle = 'List';
         $scope.stringForRightButton = 'LST';
-        console.log("enableTab1 end");
     }
 
     $scope.enableTab2 = function () {
         $scope.tab = 2;
         $scope.stringForTitle = 'Actions';
         $scope.stringForRightButton = 'ACT';
-        console.log("enableTab2 end");
     }
 
     $scope.enableTab3 = function () {
