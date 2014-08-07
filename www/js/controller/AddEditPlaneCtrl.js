@@ -2,15 +2,14 @@ sdApp.controller('AddEditPlaneCtrl', function ($scope, $routeParams, $http, dbPa
 
     $scope.planes = [];
 
-    dbName = dbParams.dbName();
-    dbVersion = dbParams.dbVersion();
+
     $scope.planeId = $routeParams.planeId;
 
     addPlaneToObjectStore = function (reg, airline) {
         console.log('addPlaneToObjectStore start');
 
 
-        var request = window.indexedDB.open(dbName, dbVersion);
+        var request = window.indexedDB.open(dbParams.dbName(), dbParams.dbVersion());
 
         request.onerror = function (event) {
             console.error('request.onerror');
@@ -49,7 +48,7 @@ sdApp.controller('AddEditPlaneCtrl', function ($scope, $routeParams, $http, dbPa
     loadPlaneById = function (planeId) {
         console.log('loadPlaneById start');
 
-        var request = indexedDB.open(dbName, dbVersion);
+        var request = indexedDB.open(dbParams.dbName(), dbParams.dbVersion());
 
         request.onsuccess = function (event) {
             var db = event.target.result;
@@ -61,6 +60,7 @@ sdApp.controller('AddEditPlaneCtrl', function ($scope, $routeParams, $http, dbPa
             request.onsuccess = function (event) {
                 db.close();
                 plane = event.target.result; //data received
+                planeBackup = JSON.parse(JSON.stringify(plane));
                 $scope.planeReg = plane.reg;
                 $scope.planeAirline = plane.airline;
                 $scope.$apply();
@@ -88,6 +88,21 @@ sdApp.controller('AddEditPlaneCtrl', function ($scope, $routeParams, $http, dbPa
         return willAbort;
     }
 
+    $scope.revertChanges = function() {
+        $scope.planeReg = "1";
+        $scope.planeAirline = "2";
+        console.log('revertChanges');
+    }
+
+    $scope.revertChanges2 = function() {
+        console.log('revertChanges');
+        alert(JSON.stringify(planeBackup));
+        $scope.planeReg = planeBackup.reg;
+        $scope.planeAirline = planeBackup.airline;
+        setTimeout(function(){ $scope.$apply(); });
+
+    }
+
     $scope.updatePlane = function () {
         console.log('id ' + $scope.planeId);
         console.log('reg ' + $scope.planeReg);
@@ -100,7 +115,7 @@ sdApp.controller('AddEditPlaneCtrl', function ($scope, $routeParams, $http, dbPa
             return -1;
         } else {
 
-            var request = indexedDB.open(dbName, dbVersion);
+            var request = indexedDB.open(dbParams.dbName(), dbParams.dbVersion());
 
             request.onsuccess = function (event) {
                 var db = event.target.result;
@@ -118,7 +133,7 @@ sdApp.controller('AddEditPlaneCtrl', function ($scope, $routeParams, $http, dbPa
     };
 
     $scope.deletePlane = function() {
-        var request = indexedDB.open(dbName, dbVersion);
+        var request = indexedDB.open(dbParams.dbName(), dbParams.dbVersion());
 
         request.onsuccess = function (event) {
             var db = event.target.result;
