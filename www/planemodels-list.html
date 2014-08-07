@@ -20,9 +20,6 @@
                 <li ng-class="{active: tab == 2}">
                     <a ng-click="enableTab2()">Actions</a>
                 </li>
-                <li ng-class="{active: tab == 3}">
-                    <a ng-click="enableTab3()">Export</a>
-                </li>
             </ul>
 
             <div class="tab-content">
@@ -46,14 +43,6 @@
                     <div ng-include src='"planemodels-list-Actions.html"'></div>
                 </div>
 
-                <div class="tab-pane"
-                     toggleable
-                     ng-class="{active: tab == 3}"
-                     id="Tab3"
-                     exclusion-group="myTabs">
-
-                    <div ng-include src='"planemodels-list-Export.html"'></div>
-                </div>
             </div>
         </div>
     </div>
