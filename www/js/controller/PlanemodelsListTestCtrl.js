@@ -1,17 +1,17 @@
-sdApp.controller('PlanemodelsListTestCtrl', function ($scope, $routeParams, $http) {
+sdApp.controller('PlanemodelsListTestCtrl', function ($scope, $routeParams, $http, dbParams) {
 
     $scope.stringForTitle = 'foo';
     $scope.stringForRightButton = 'bar';
 
-    $scope.tab = 1;
+    $scope.enableTab1();
 
     $scope.planemodelIndex = 0;
 
     $scope.customers = [];
     $scope.planemodels = [];
 
-    const dbName = "planemodels";
-    const dbVersion = 2;
+    dbName = dbParams.dbName();
+    dbVersion = dbParams.dbVersion();
 
     $scope.databaseConnected = false;
 

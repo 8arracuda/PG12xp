@@ -1,17 +1,6 @@
 sdApp.controller('PlanesListCtrl', function ($scope, $routeParams, $http, dbParams) {
 
-    $scope.tab = 1;
 
-    $scope.planes = [];
-
-    //const dbName = "PG12xp";
-    //const dbVersion = 1;
-    dbName = dbParams.dbName();
-    dbVersion = dbParams.dbVersion();
-    console.log('dbName:' + dbName);
-    console.log('dbVersion:' + dbVersion);
-
-    $scope.planeReg = "";
 
 
     $scope.enableTab1 = function () {
@@ -259,6 +248,17 @@ sdApp.controller('PlanesListCtrl', function ($scope, $routeParams, $http, dbPara
             db.close();
         };
     }
+
+    $scope.enableTab1();
+
+    $scope.planes = [];
+
+    dbName = dbParams.dbName();
+    dbVersion = dbParams.dbVersion();
+    console.log('dbName:' + dbName);
+    console.log('dbVersion:' + dbVersion);
+
+    $scope.planeReg = "";
 
 
     initPlanes();

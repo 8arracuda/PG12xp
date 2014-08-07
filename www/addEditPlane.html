@@ -17,8 +17,16 @@
 
     <div ng-show="editMode">edit<br></div>
 
-    reg<br>
+    Planemodel<br>
+    {{ planemodelDescription }}<br>
+
+    <a class="btn btn-default" href="#/selectPlanemodelForPlane/{{ plane.id }}">change planemodel</a> <br>
+
+    Registration<br>
     <input ng-model="planeReg" type="text"/><br>
+
+    Airline<br>
+    <input ng-model="planeAirline" type="text"/><br>
 
     <a ng-show="!editMode" ng-click="savePlane()" class="btn btn-primary">
         save in database

@@ -1,4 +1,4 @@
-sdApp.controller('PlanemodelsListCtrl', function ($scope, $routeParams, $http) {
+sdApp.controller('PlanemodelsListCtrl', function ($scope, $routeParams, $http, dbParams) {
 
     $scope.tab = 1;
 
@@ -7,12 +7,10 @@ sdApp.controller('PlanemodelsListCtrl', function ($scope, $routeParams, $http) {
     $scope.customers = [];
     $scope.planemodels = [];
 
-    const dbName = "planemodels";
-    const dbVersion = 1;
+    dbName = dbParams.dbName();
+    dbVersion = dbParams.dbVersion();
 
-    $scope.planemodelManufacturer = "";
-    $scope.planemodelModel = "";
-    $scope.planemodelIcao = "";
+    $scope.planeReg = "";
 
 
     const planemodels = [
@@ -37,6 +35,24 @@ sdApp.controller('PlanemodelsListCtrl', function ($scope, $routeParams, $http) {
         {"id": 24, "manufacturer": "Cessna", "model": "208B Super Cargomaster", "icao": "C208", "wake": "L", "length_m": "11,5", "span_m": "15,9", "height_m": "4,3", "wingarea_m2": "26", "max_fuel_kg": "-1", "mtow_kg": "3970", "empty_weight_pfd": "-1", "max_weight_pfd": "-1", "max_passengers": "0", "range_km": "2000", "cruise_speed_kmh": "317", "field_length_landing_m": "290", "field_length_takeoff_m": "417", "$$hashKey": "024"}
     ];
 
+
+    $scope.enableTab1 = function () {
+        $scope.tab = 1;
+        $scope.stringForTitle = 'List';
+        $scope.stringForRightButton = 'LST';
+    }
+
+    $scope.enableTab2 = function () {
+        $scope.tab = 2;
+        $scope.stringForTitle = 'Actions';
+        $scope.stringForRightButton = 'ACT';
+    }
+
+    $scope.enableTab3 = function () {
+        $scope.tab = 3;
+        $scope.stringForTitle = 'Export';
+        $scope.stringForRightButton = 'EXP';
+    }
 
     $scope.planemodel_next = function () {
         console.log("planemodel_next");
@@ -76,13 +92,20 @@ sdApp.controller('PlanemodelsListCtrl', function ($scope, $routeParams, $http) {
             };
 
             request.onupgradeneeded = function (event) {
-                console.log('openDatabase start');
+                console.log('onupgradeneeded start');
+                console.log('onupgradeneeded - oldVersion:' + event.oldVersion);
                 var db = event.target.result;
 
                 // Create an objectStore to hold information about our customers. We're
                 // going to use "ssn" as our key path because it's guaranteed to be
                 // unique.
-                var objectStore = db.createObjectStore("planemodels", { keyPath: "id" });
+
+                if (event.oldVersion > 0) {
+                    db.deleteObjectStore("planemodels");
+                    alert('deleteObjectStore');
+                }
+
+                var objectStore = db.createObjectStore("planemodels", { keyPath: "id", autoIncrement: true });
 
                 // Create an index to search customers by name. We may have duplicates
                 // so we can't use a unique index.
@@ -232,41 +255,41 @@ sdApp.controller('PlanemodelsListCtrl', function ($scope, $routeParams, $http) {
     };
 
 
-    $scope.savePlanemodel = function () {
-        console.log('manu ' + $scope.planemodelManufacturer);
-        console.log('model ' + $scope.planemodelModel);
-        console.log('icao ' + $scope.planemodelIcao);
+//    $scope.savePlanemodel = function () {
+//        console.log('manu ' + $scope.planemodelManufacturer);
+//        console.log('model ' + $scope.planemodelModel);
+//        console.log('icao ' + $scope.planemodelIcao);
+//
+//        var willAbort = false;
+//
+//        if ($scope.planemodelManufacturer == "") {
+//            alert('you need to enter a manufacturer');
+//            willAbort = true;
+//        }
+//
+//        if ($scope.planemodelModel == "") {
+//            alert('you need to enter a model');
+//            willAbort = true;
+//        }
+//
+//        if ($scope.planemodelIcao == "") {
+//            alert('you need to enter a ICAO Code');
+//            willAbort = true;
+//        }
+//
+//
+//
+//        if (willAbort == true) {
+//            return -1;
+//        } else {
+//
+//        addPlanemodelToObjectStore($scope.planemodelManufacturer, $scope.planemodelModel, $scope.planemodelIcao);
+//
+//        }
+//
+//    };
 
-        var willAbort = false;
-
-        if ($scope.planemodelManufacturer == "") {
-            alert('you need to enter a manufacturer');
-            willAbort = true;
-        }
-
-        if ($scope.planemodelModel == "") {
-            alert('you need to enter a model');
-            willAbort = true;
-        }
-
-        if ($scope.planemodelIcao == "") {
-            alert('you need to enter a ICAO Code');
-            willAbort = true;
-        }
-
-
-
-        if (willAbort == true) {
-            return -1;
-        } else {
-
-        addPlanemodelToObjectStore($scope.planemodelManufacturer, $scope.planemodelModel, $scope.planemodelIcao);
-
-        }
-
-    };
-
-    addPlanemodelToObjectStore = function(manufacturer, model, icao) {
+    addPlanemodelToObjectStore = function (manufacturer, model, icao) {
         console.log('addPlanemodelToObjectStore start');
 
 
@@ -297,11 +320,10 @@ sdApp.controller('PlanemodelsListCtrl', function ($scope, $routeParams, $http) {
 
             newPlanemodel.id = 42;
             newPlanemodel.manufacturer = manufacturer;
-            newPlanemodel.model= model;
+            newPlanemodel.model = model;
             newPlanemodel.icao = icao;
 
             objectStore.add(newPlanemodel);
-
 
 
             db.close();

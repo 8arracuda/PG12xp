@@ -1,13 +1,28 @@
 <div ng-controller="PlanesListCtrl" xmlns="http://www.w3.org/1999/html">
 
-
-
     <div class="scrollable">
         <div class="scrollable-content">
 
+            <div content-for="title">
+                <span>{{ stringForTitle }}</span>
+            </div>
+
+            <div content-for="navbarAction">
+                <div class="btn btn-navbar">
+                    <i class="fa fa-plus"></i>{{ stringForRightButton }}
+                </div>
+            </div>
+
             <ul class="nav nav-tabs">
-                <li ng-class="{active: tab == 1}"><a ng-click="tab = 1">Actions</a></li>
-                <li ng-class="{active: tab == 2}"><a ng-click="tab = 2">Planes List</a></li>
+                <li ng-class="{active: tab == 1}">
+                    <a ng-click="enableTab1()">list Planes</a>
+                </li>
+                <li ng-class="{active: tab == 2}">
+                    <a ng-click="enableTab2()">Actions</a>
+                </li>
+                <li ng-class="{active: tab == 3}">
+                    <a ng-click="enableTab3()">Export</a>
+                </li>
             </ul>
 
             <div class="tab-content">
@@ -15,24 +30,30 @@
                 <div class="tab-pane"
                      toggleable
                      ng-class="{active: tab == 1}"
+                     default="active"
                      id="Tab1"
                      exclusion-group="myTabs">
 
-                    <div ng-include src='"planes-list-Actions.html"'></div>
-
+                    <div ng-include src='"planes-list-Planes.html"'></div>
                 </div>
 
                 <div class="tab-pane"
                      toggleable
                      ng-class="{active: tab == 2}"
-                     default="active"
                      id="Tab2"
                      exclusion-group="myTabs">
 
-                    <div ng-include src='"planes-list-List.html"'></div>
-
+                    <div ng-include src='"planes-list-Actions.html"'></div>
                 </div>
 
+                <div class="tab-pane"
+                     toggleable
+                     ng-class="{active: tab == 3}"
+                     id="Tab3"
+                     exclusion-group="myTabs">
+
+                    <div ng-include src='"planes-list-Export.html"'></div>
+                </div>
             </div>
         </div>
     </div>

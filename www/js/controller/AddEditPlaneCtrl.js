@@ -6,7 +6,7 @@ sdApp.controller('AddEditPlaneCtrl', function ($scope, $routeParams, $http, dbPa
     dbVersion = dbParams.dbVersion();
     $scope.planeId = $routeParams.planeId;
 
-    addPlaneToObjectStore = function (reg) {
+    addPlaneToObjectStore = function (reg, airline) {
         console.log('addPlaneToObjectStore start');
 
 
@@ -36,6 +36,7 @@ sdApp.controller('AddEditPlaneCtrl', function ($scope, $routeParams, $http, dbPa
             var newPlane = {};
 
             newPlane.reg = reg;
+            newPlane.airline = airline;
 
             objectStore.add(newPlane);
 
@@ -61,6 +62,7 @@ sdApp.controller('AddEditPlaneCtrl', function ($scope, $routeParams, $http, dbPa
                 db.close();
                 plane = event.target.result; //data received
                 $scope.planeReg = plane.reg;
+                $scope.planeAirline = plane.airline;
                 $scope.$apply();
             };
 
@@ -70,17 +72,29 @@ sdApp.controller('AddEditPlaneCtrl', function ($scope, $routeParams, $http, dbPa
         }
     }
 
+    function willAbortCheck() {
+        var willAbort = false;
+
+        if ($scope.planeReg == "") {
+            alert('you need to enter a reg');
+            willAbort = true;
+        }
+
+        if ($scope.planeAirline == "") {
+            alert('you need to enter a Airline');
+            willAbort = true;
+        }
+
+        return willAbort;
+    }
 
     $scope.updatePlane = function () {
         console.log('id ' + $scope.planeId);
         console.log('reg ' + $scope.planeReg);
 
-        var willAbort = false;
 
-        if ($scope.planeReg == "") {
-            alert('you need to enter a Reg');
-            willAbort = true;
-        }
+        var willAbort = willAbortCheck();
+
 
         if (willAbort == true) {
             return -1;
@@ -97,7 +111,7 @@ sdApp.controller('AddEditPlaneCtrl', function ($scope, $routeParams, $http, dbPa
                 request.onsuccess = function (event) {
                     alert('plane was deleted');
                     db.close();
-                    addPlaneToObjectStore($scope.planeReg);
+                    addPlaneToObjectStore($scope.planeReg, $scope.planeAirline);
                 }
             };
         }
@@ -122,20 +136,17 @@ sdApp.controller('AddEditPlaneCtrl', function ($scope, $routeParams, $http, dbPa
 
     $scope.savePlane = function () {
         console.log('reg ' + $scope.planeReg);
+        console.log('airline ' + $scope.planeReg);
 
-        var willAbort = false;
-
-        if ($scope.planeReg == "") {
-            alert('you need to enter a reg');
-            willAbort = true;
-        }
+        var willAbort = willAbortCheck();
 
         if (willAbort == true) {
             return -1;
         } else {
 
-            addPlaneToObjectStore($scope.planeReg);
+            addPlaneToObjectStore($scope.planeReg, $scope.planeAirline);
             $scope.planeReg = "";
+            $scope.planeAirline = "";
         }
     }
 
@@ -147,6 +158,7 @@ sdApp.controller('AddEditPlaneCtrl', function ($scope, $routeParams, $http, dbPa
         var editMode = false;
         $scope.titleString = "Add Plane";
         $scope.planeReg = "";
+        $scope.planeAirline = "";
     }
     $scope.editMode = editMode;
 
