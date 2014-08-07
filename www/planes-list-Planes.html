@@ -2,7 +2,7 @@
 
     <div ng-repeat="plane in planes">
         <a class="list-group-item" href="#/editPlane/{{plane.id}}">
-            {{ plane.reg }}
+            {{ plane.reg }} ({{ planemodels[$index].manufacturer }} {{ planemodels[$index].model }})
             <i class="fa fa-chevron-right pull-right"></i>
         </a>
     </div>

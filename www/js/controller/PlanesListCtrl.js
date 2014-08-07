@@ -1,8 +1,6 @@
 sdApp.controller('PlanesListCtrl', function ($scope, $routeParams, $http, dbParams) {
 
 
-
-
     $scope.enableTab1 = function () {
         $scope.tab = 1;
         $scope.stringForTitle = 'List';
@@ -52,7 +50,6 @@ sdApp.controller('PlanesListCtrl', function ($scope, $routeParams, $http, dbPara
         }
     };
 
-
     $scope.showList = function () {
 
         $scope.planes = [];
@@ -64,9 +61,9 @@ sdApp.controller('PlanesListCtrl', function ($scope, $routeParams, $http, dbPara
         var counter = 0;
         objectStore.openCursor().onsuccess = function (event) {
 
-            //alert('objectStore.openCursor().onsuccess');
             var cursor = event.target.result;
             if (cursor) {
+
                 $scope.planes.push(cursor.value);
                 counter++;
                 cursor.continue();
@@ -77,6 +74,9 @@ sdApp.controller('PlanesListCtrl', function ($scope, $routeParams, $http, dbPara
                 $scope.$apply();
             }
         };
+
+        //TODO write planemodels array
+
     };
 
 
@@ -119,6 +119,7 @@ sdApp.controller('PlanesListCtrl', function ($scope, $routeParams, $http, dbPara
         }
 
     };
+
 
     $scope.loadPlanes_web = function () {
         console.log("loadPlanes_web start");
