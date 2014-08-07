@@ -1,9 +1,9 @@
-sdApp.controller('AddEditPlanemodelCtrl', function ($scope, $routeParams, $http) {
+sdApp.controller('AddEditPlanemodelCtrl', function ($scope, $routeParams, $http, dbParams) {
 
     $scope.planemodels = [];
 
-    const dbName = "planemodels";
-    const dbVersion = 2;
+    dbName = dbParams.dbName();
+    dbVersion = dbParams.dbVersion();
     $scope.planemodelId = $routeParams.planemodelId;
 
     addPlanemodelToObjectStore = function (manufacturer, model, icao) {

@@ -11,10 +11,10 @@ sdApp.config(function ($routeProvider) {
             templateUrl: 'planemodels-list.html',
             controller: 'PlanemodelsListCtrl'
         }).
-        when('/showPlanemodelsTest/', {
-            templateUrl: 'planemodels-listTest.html',
-            controller: 'PlanemodelsListTestCtrl'
-        }).
+//        when('/showPlanemodelsTest/', {
+//            templateUrl: 'planemodels-listTest.html',
+//            controller: 'PlanemodelsListTestCtrl'
+//        }).
         when('/showPlanes/', {
             templateUrl: 'planes-list.html',
             controller: 'PlanesListCtrl'
