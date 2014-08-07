@@ -1,0 +1,33 @@
+<div ng-controller="AddEditPlaneCtrl">
+
+    <div content-for="title">
+        <span>{{ titleString }}</span>
+    </div>
+
+    <div content-for="navbarAction_left">
+        <a href="#/showPlanes" class="btn btn-navbar">
+            <i class="fa fa-backward"></i> back</a>
+    </div>
+
+    <div content-for="navbarAction">
+        <div class="btn btn-navbar">
+            <i class="fa fa-plus"></i>APM
+        </div>
+    </div>
+
+    <div ng-show="editMode">edit<br></div>
+
+    reg<br>
+    <input ng-model="planeReg" type="text"/><br>
+
+    <a ng-show="!editMode" ng-click="savePlane()" class="btn btn-primary">
+        save in database
+    </a>
+    <a ng-show="editMode" ng-click="updatePlane()" class="btn btn-primary">
+        update in database
+    </a>
+    <br>
+    <a ng-show="editMode" ng-click="deletePlane()" class="btn btn-danger">
+        delete plane
+    </a>
+</div>

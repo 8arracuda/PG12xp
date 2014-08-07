@@ -27,10 +27,10 @@ sdApp.config(function ($routeProvider) {
             templateUrl: 'editLandings.html',
             controller: 'EditLandingsCtrl'
         }).
-        when('/editPlane/:planeId', {
-            templateUrl: 'editPlane.html',
-            controller: 'EditPlaneCtrl'
-        }).
+//        when('/editPlane/:planeId', {
+//            templateUrl: 'editPlane.html',
+//            controller: 'EditPlaneCtrl'
+//        }).
         when('/selectPlanemodelForPlane/:planeId', {
             templateUrl: 'selectPlanemodelForPlane.html',
             controller: 'SelectPlanemodelForPlaneCtrl'
@@ -42,6 +42,14 @@ sdApp.config(function ($routeProvider) {
         when('/editPlanemodel/:planemodelId', {
             templateUrl: 'addEditPlanemodel.html',
             controller: 'AddEditPlanemodelCtrl'
+        }).
+        when('/addPlane/', {
+            templateUrl: 'addEditPlane.html',
+            controller: 'AddEditPlaneCtrl'
+        }).
+        when('/editPlane/:planeId', {
+            templateUrl: 'addEditPlane.html',
+            controller: 'AddEditPlaneCtrl'
         }).
         when('/selectPlanemodel/', {
             templateUrl: 'selectPlanemodel.html',
@@ -117,6 +125,7 @@ function initDatabase() {
             // going to use "ssn" as our key path because it's guaranteed to be
             // unique.
 
+            //TODO: Was passiert, wenn noch keine Datenbank angelegt ist -> loeschen fuehrt dann zu einem Fehler
 //                if (event.oldVersion > 0 ) {
 //                    db.deleteObjectStore("planes");
 //                    console.log('deleted objectstore planes');

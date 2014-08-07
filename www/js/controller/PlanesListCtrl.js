@@ -58,45 +58,7 @@ sdApp.controller('PlanesListCtrl', function ($scope, $routeParams, $http, dbPara
             };
 
             request.onupgradeneeded = function (event) {
-                console.log('onupgradeneeded start');
-                console.log('onupgradeneeded - oldVersion:' + event.oldVersion);
-                var db = event.target.result;
-
-                // Create an objectStore to hold information about our customers. We're
-                // going to use "ssn" as our key path because it's guaranteed to be
-                // unique.
-
-                if (event.oldVersion > 0) {
-                    db.deleteObjectStore("planes");
-                    db.deleteObjectStore("planemodels");
-                    console.log('deleted objectstore planes');
-                    console.log('deleted objectstore planemodels');
-                }
-
-
-                //init ObjectStore Planemodels
-                var objectStore = db.createObjectStore("planemodels", { keyPath: "id", autoIncrement: true });
-                objectStore.createIndex("id", "id", { unique: true });
-
-
-                //init ObjectStore Planes
-                var objectStore = db.createObjectStore("planes", { keyPath: "id", autoIncrement: true });
-                objectStore.createIndex("id", "id", { unique: true });
-
-                // Create an index to search customers by name. We may have duplicates
-                // so we can't use a unique index.
-                //objectStore.createIndex("name", "name", { unique: false });
-
-                // Create an index to search customers by email. We want to ensure that
-                // no two customers have the same email, so use a unique index.
-                //objectStore.createIndex("email", "email", { unique: true });
-
-
-                // Store values in the newly created objectStore.
-                //for (var i in planes) {
-                //    objectStore.add(planes[i]);
-                //}
-                console.log('openDatabase end');
+                console.log('onupgradeneeded started in a wrong place');
             }
         }
     };
@@ -109,7 +71,6 @@ sdApp.controller('PlanesListCtrl', function ($scope, $routeParams, $http, dbPara
 
         var tx = db.transaction(objectStoreName, "readonly");
         var objectStore = tx.objectStore(objectStoreName);
-
 
         var counter = 0;
         objectStore.openCursor().onsuccess = function (event) {

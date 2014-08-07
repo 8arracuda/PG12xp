@@ -1,4 +1,4 @@
-sdApp.controller('PlanemodelsListCtrl', function ($scope, $routeParams, $http) {
+sdApp.controller('PlanemodelsListCtrl', function ($scope, $routeParams, $http, dbParams) {
 
     $scope.tab = 1;
 
@@ -7,12 +7,10 @@ sdApp.controller('PlanemodelsListCtrl', function ($scope, $routeParams, $http) {
     $scope.customers = [];
     $scope.planemodels = [];
 
-    const dbName = "planemodels";
-    const dbVersion = 2;
+    dbName = dbParams.dbName();
+    dbVersion = dbParams.dbVersion();
 
-    $scope.planemodelManufacturer = "";
-    $scope.planemodelModel = "";
-    $scope.planemodelIcao = "";
+    $scope.planeReg = "";
 
 
     const planemodels = [
