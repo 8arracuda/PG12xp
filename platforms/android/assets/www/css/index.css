@@ -10,8 +10,12 @@
     hyphens: auto;
 }
 
-.list-group {
-    padding-bottom: 30px;
+/*.list-group {*/
+    /*padding-bottom: 30px;*/
+/*}*/
+
+.btn {
+    padding: 12px;
 }
 
 /*https://stackoverflow.com/questions/3058866/how-to-force-a-line-break-in-a-loooooong-word-in-a-div*/

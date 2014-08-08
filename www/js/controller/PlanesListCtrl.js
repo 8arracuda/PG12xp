@@ -4,14 +4,14 @@ sdApp.controller('PlanesListCtrl', function ($scope, $rootScope, $routeParams, $
     $scope.enableTab1 = function () {
         console.log("enableTab1");
         $scope.tab = 1;
-        $scope.stringForTitle = 'List';
+        $scope.stringForTitle = 'Planes - List';
         $scope.stringForRightButton = 'LST';
     }
 
     $scope.enableTab2 = function () {
         console.log("enableTab2");
         $scope.tab = 2;
-        $scope.stringForTitle = 'Actions';
+        $scope.stringForTitle = 'Planes - Actions';
         $scope.stringForRightButton = 'ACT';
     }
 
@@ -242,10 +242,7 @@ sdApp.controller('PlanesListCtrl', function ($scope, $rootScope, $routeParams, $
         };
     }
 
-    //$scope.enableTab1();
-//    console.log('before toogle');
-//    $rootScope.toggle('planes_actions', 'on');
-//    console.log('after toogle');
+    $scope.enableTab1();
 
     $scope.planes = [];
 
@@ -255,7 +252,6 @@ sdApp.controller('PlanesListCtrl', function ($scope, $rootScope, $routeParams, $
     $scope.planeReg = "";
 
     initPlanes();
-
 
 
 });

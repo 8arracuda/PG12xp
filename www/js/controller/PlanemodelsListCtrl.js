@@ -25,13 +25,13 @@ sdApp.controller('PlanemodelsListCtrl', function ($scope, $routeParams, $http, d
 
     $scope.enableTab1 = function () {
         $scope.tab = 1;
-        $scope.stringForTitle = 'List';
+        $scope.stringForTitle = 'Planemodels - List';
         $scope.stringForRightButton = 'LST';
     }
 
     $scope.enableTab2 = function () {
         $scope.tab = 2;
-        $scope.stringForTitle = 'Actions';
+        $scope.stringForTitle = 'Planemodels - Actions';
         $scope.stringForRightButton = 'ACT';
     }
 
@@ -317,7 +317,7 @@ sdApp.controller('PlanemodelsListCtrl', function ($scope, $routeParams, $http, d
         };
     }
 
-    //$scope.enableTab1();
+    $scope.enableTab1();
 
     $scope.planemodels = [];
 
