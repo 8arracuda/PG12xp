@@ -15,16 +15,16 @@
 
             <div class="btn-group justified nav-tabs">
                 <a class="btn btn-default"
-                   href="#List"
-                   target="List"
+                   href="#planes_list"
+                   target="planes_list"
                    toggle="on"
                    ng-click="enableTab1()"
                    active-class="active">List Planes
                 </a>
 
                 <a class="btn btn-default"
-                   href="#Actions"
-                   target="Actions"
+                   href="#planes_actions"
+                   target="planes_actions"
                    toggle="on"
                    ng-click="enableTab2()"
                    active-class="active">Actions
@@ -37,7 +37,7 @@
                      toggleable
                      ng-class="{active: tab == 1}"
                      default="active"
-                     id="List"
+                     id="planes_list"
                      exclusion-group="myTabs">
                     <div ng-include src='"planes-list-Planes.html"'></div>
                 </div>
@@ -45,7 +45,7 @@
                 <div class="tab-pane"
                      toggleable
                      ng-class="{active: tab == 2}"
-                     id="Actions"
+                     id="planes_actions"
                      exclusion-group="myTabs">
                     <div ng-include src='"planes-list-Actions.html"'></div>
                 </div>

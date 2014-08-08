@@ -1,4 +1,4 @@
-sdApp.controller('PlanesListCtrl', function ($scope, $routeParams, $http, dbParams) {
+sdApp.controller('PlanesListCtrl', function ($scope, $rootScope, $routeParams, $http, dbParams) {
 
 
     $scope.enableTab1 = function () {
@@ -243,9 +243,9 @@ sdApp.controller('PlanesListCtrl', function ($scope, $routeParams, $http, dbPara
     }
 
     //$scope.enableTab1();
-    console.log('before toogle');
-    $scope.toggle('Actions', 'on');
-    console.log('after toogle');
+//    console.log('before toogle');
+//    $rootScope.toggle('planes_actions', 'on');
+//    console.log('after toogle');
 
     $scope.planes = [];
 
@@ -254,7 +254,7 @@ sdApp.controller('PlanesListCtrl', function ($scope, $routeParams, $http, dbPara
 
     $scope.planeReg = "";
 
-    //initPlanes();
+    initPlanes();
 
 
 

@@ -5,7 +5,7 @@ lsTest = '1';
 sdApp.config(function ($routeProvider) {
 
     $routeProvider.
-        when('/showPlanemodels/', {
+        when('/showPlanemodels', {
             templateUrl: 'planemodels-list.html',
             controller: 'PlanemodelsListCtrl'
         }).
@@ -155,5 +155,5 @@ function initDatabase() {
     }
 }
 
-//initDatabase();
+initDatabase();
 
