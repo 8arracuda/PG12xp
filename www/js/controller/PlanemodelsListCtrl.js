@@ -317,7 +317,7 @@ sdApp.controller('PlanemodelsListCtrl', function ($scope, $routeParams, $http, d
         };
     }
 
-    $scope.enableTab1();
+    //$scope.enableTab1();
 
     $scope.planemodels = [];
 

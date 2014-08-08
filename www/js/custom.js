@@ -155,5 +155,5 @@ function initDatabase() {
     }
 }
 
-//initDatabase();
+initDatabase();
 

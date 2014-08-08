@@ -254,7 +254,7 @@ sdApp.controller('PlanesListCtrl', function ($scope, $routeParams, $http, dbPara
 
     $scope.planeReg = "";
 
-    //initPlanes();
+    initPlanes();
 
 
 
