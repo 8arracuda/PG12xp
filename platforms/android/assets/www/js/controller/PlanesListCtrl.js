@@ -1,35 +1,18 @@
 sdApp.controller('PlanesListCtrl', function ($scope, $routeParams, $http, dbParams) {
 
-    $scope.tab = 1;
-
-    $scope.planes = [];
-
-    //const dbName = "PG12xp";
-    //const dbVersion = 1;
-    dbName = dbParams.dbName();
-    dbVersion = dbParams.dbVersion();
-    console.log('dbName:' + dbName);
-    console.log('dbVersion:' + dbVersion);
-
-    $scope.planeReg = "";
-
 
     $scope.enableTab1 = function () {
+        console.log("enableTab1");
         $scope.tab = 1;
         $scope.stringForTitle = 'List';
         $scope.stringForRightButton = 'LST';
     }
 
     $scope.enableTab2 = function () {
+        console.log("enableTab2");
         $scope.tab = 2;
         $scope.stringForTitle = 'Actions';
         $scope.stringForRightButton = 'ACT';
-    }
-
-    $scope.enableTab3 = function () {
-        $scope.tab = 3;
-        $scope.stringForTitle = 'Export';
-        $scope.stringForRightButton = 'EXP';
     }
 
 
@@ -63,7 +46,6 @@ sdApp.controller('PlanesListCtrl', function ($scope, $routeParams, $http, dbPara
         }
     };
 
-
     $scope.showList = function () {
 
         $scope.planes = [];
@@ -75,9 +57,9 @@ sdApp.controller('PlanesListCtrl', function ($scope, $routeParams, $http, dbPara
         var counter = 0;
         objectStore.openCursor().onsuccess = function (event) {
 
-            //alert('objectStore.openCursor().onsuccess');
             var cursor = event.target.result;
             if (cursor) {
+
                 $scope.planes.push(cursor.value);
                 counter++;
                 cursor.continue();
@@ -88,12 +70,15 @@ sdApp.controller('PlanesListCtrl', function ($scope, $routeParams, $http, dbPara
                 $scope.$apply();
             }
         };
+
+        //TODO write planemodels array
+
     };
 
 
     $scope.deleteAllPlanesFromDatabase = function () {
 
-        var answer = confirm('do you want to delete all entries in plane?');
+        var answer = confirm('do you want to delete all entries in ObjectStore -plane-?');
 
         if (answer) {
             console.log('user confirmed to delete');
@@ -131,6 +116,7 @@ sdApp.controller('PlanesListCtrl', function ($scope, $routeParams, $http, dbPara
 
     };
 
+
     $scope.loadPlanes_web = function () {
         console.log("loadPlanes_web start");
         var url = '/planes.json';
@@ -139,7 +125,7 @@ sdApp.controller('PlanesListCtrl', function ($scope, $routeParams, $http, dbPara
 
     $scope.loadPlanes_pg = function () {
         console.log("loadPlanes_pg start");
-        var url = 'http://c.raceplanner.de/PG10xp/planes.json';
+        var url = 'http://c.raceplanner.de/PG12xp/planes.json';
         loadplanes(url);
     };
 
@@ -173,9 +159,7 @@ sdApp.controller('PlanesListCtrl', function ($scope, $routeParams, $http, dbPara
                     // Don't forget to handle errors!
                     alert("transaction error");
                     alert(JSON.stringify(event));
-
                 };
-
 
             }).
             error(function (data, status, headers, config) {
@@ -223,7 +207,6 @@ sdApp.controller('PlanesListCtrl', function ($scope, $routeParams, $http, dbPara
     addPlaneToObjectStore = function (manufacturer, model, icao) {
         console.log('addPlaneToObjectStore start');
 
-
         var request = window.indexedDB.open(dbName, dbVersion);
 
         request.onerror = function (event) {
@@ -239,7 +222,6 @@ sdApp.controller('PlanesListCtrl', function ($scope, $routeParams, $http, dbPara
 
             transaction.oncomplete = function (event) {
                 console.log('add - transaction.oncomplete');
-
             };
 
             transaction.onerror = function (event) {
@@ -260,7 +242,20 @@ sdApp.controller('PlanesListCtrl', function ($scope, $routeParams, $http, dbPara
         };
     }
 
+    //$scope.enableTab1();
+    console.log('before toogle');
+    $scope.toggle('Actions', 'on');
+    console.log('after toogle');
 
-    initPlanes();
+    $scope.planes = [];
+
+    dbName = dbParams.dbName();
+    dbVersion = dbParams.dbVersion();
+
+    $scope.planeReg = "";
+
+    //initPlanes();
+
+
 
 });

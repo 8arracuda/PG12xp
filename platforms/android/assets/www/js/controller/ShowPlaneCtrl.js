@@ -36,10 +36,8 @@ sdApp.controller('ShowPlaneCtrl', function ($scope, $routeParams, $http) {
 
     $scope.deleteLanding = function (index) {
 
-
         var landingToRemove = $scope.selectedPlane.landings[index];
         var answer = confirm('Landing ' + $scope.selectedPlane.landings[index].airport + '(' + $scope.selectedPlane.landings[index].landingSpd + ') will be removed. This cannot be undone.');
-
 
         if (answer) {
 
@@ -50,7 +48,7 @@ sdApp.controller('ShowPlaneCtrl', function ($scope, $routeParams, $http) {
                 $scope.selectedPlane.landings.splice(position, 1);
             }
         }
-    }
+    };
 
     $scope.addLanding = function () {
         var newLanding = {
@@ -63,6 +61,6 @@ sdApp.controller('ShowPlaneCtrl', function ($scope, $routeParams, $http) {
 
         $scope.stringAirport = "";
         $scope.stringLandingSpd = "";
-    }
+    };
 
 });

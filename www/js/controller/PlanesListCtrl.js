@@ -2,21 +2,17 @@ sdApp.controller('PlanesListCtrl', function ($scope, $routeParams, $http, dbPara
 
 
     $scope.enableTab1 = function () {
+        console.log("enableTab1");
         $scope.tab = 1;
         $scope.stringForTitle = 'List';
         $scope.stringForRightButton = 'LST';
     }
 
     $scope.enableTab2 = function () {
+        console.log("enableTab2");
         $scope.tab = 2;
         $scope.stringForTitle = 'Actions';
         $scope.stringForRightButton = 'ACT';
-    }
-
-    $scope.enableTab3 = function () {
-        $scope.tab = 3;
-        $scope.stringForTitle = 'Export';
-        $scope.stringForRightButton = 'EXP';
     }
 
 
@@ -82,7 +78,7 @@ sdApp.controller('PlanesListCtrl', function ($scope, $routeParams, $http, dbPara
 
     $scope.deleteAllPlanesFromDatabase = function () {
 
-        var answer = confirm('do you want to delete all entries in plane?');
+        var answer = confirm('do you want to delete all entries in ObjectStore -plane-?');
 
         if (answer) {
             console.log('user confirmed to delete');
@@ -163,9 +159,7 @@ sdApp.controller('PlanesListCtrl', function ($scope, $routeParams, $http, dbPara
                     // Don't forget to handle errors!
                     alert("transaction error");
                     alert(JSON.stringify(event));
-
                 };
-
 
             }).
             error(function (data, status, headers, config) {
@@ -213,7 +207,6 @@ sdApp.controller('PlanesListCtrl', function ($scope, $routeParams, $http, dbPara
     addPlaneToObjectStore = function (manufacturer, model, icao) {
         console.log('addPlaneToObjectStore start');
 
-
         var request = window.indexedDB.open(dbName, dbVersion);
 
         request.onerror = function (event) {
@@ -229,7 +222,6 @@ sdApp.controller('PlanesListCtrl', function ($scope, $routeParams, $http, dbPara
 
             transaction.oncomplete = function (event) {
                 console.log('add - transaction.oncomplete');
-
             };
 
             transaction.onerror = function (event) {
@@ -250,18 +242,20 @@ sdApp.controller('PlanesListCtrl', function ($scope, $routeParams, $http, dbPara
         };
     }
 
-    $scope.enableTab1();
+    //$scope.enableTab1();
+    console.log('before toogle');
+    $scope.toggle('Actions', 'on');
+    console.log('after toogle');
 
     $scope.planes = [];
 
     dbName = dbParams.dbName();
     dbVersion = dbParams.dbVersion();
-    console.log('dbName:' + dbName);
-    console.log('dbVersion:' + dbVersion);
 
     $scope.planeReg = "";
 
+    //initPlanes();
 
-    initPlanes();
+
 
 });

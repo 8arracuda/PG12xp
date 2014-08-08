@@ -1,5 +1,3 @@
-//app.initialize();
-
 var sdApp = angular.module('sdApp', ["ngRoute", "mobile-angular-ui"]);
 
 lsTest = '1';
@@ -15,7 +13,7 @@ sdApp.config(function ($routeProvider) {
 //            templateUrl: 'planemodels-listTest.html',
 //            controller: 'PlanemodelsListTestCtrl'
 //        }).
-        when('/showPlanes/', {
+        when('/showPlanes', {
             templateUrl: 'planes-list.html',
             controller: 'PlanesListCtrl'
         }).
@@ -85,11 +83,6 @@ sdApp.factory('dbParams', function () {
     };
 });
 
-//dbName = dbParams.dbName();
-//dbVersion = dbParams.dbVersion();
-
-console.log('dbName:' + dbName);
-console.log('dbVersion:' + dbVersion);
 
 function initDatabase() {
     console.log('initDatabase start');
@@ -162,5 +155,5 @@ function initDatabase() {
     }
 }
 
-initDatabase();
+//initDatabase();
 

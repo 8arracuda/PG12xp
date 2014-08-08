@@ -13,17 +13,24 @@
                 </div>
             </div>
 
-            <ul class="nav nav-tabs">
-                <li ng-class="{active: tab == 1}">
-                    <a ng-click="enableTab1()">list Planemodels</a>
-                </li>
-                <li ng-class="{active: tab == 2}">
-                    <a ng-click="enableTab2()">Actions</a>
-                </li>
-                <li ng-class="{active: tab == 3}">
-                    <a ng-click="enableTab3()">Export</a>
-                </li>
-            </ul>
+
+            <div class="btn-group justified nav-tabs">
+                <a class="btn btn-default"
+                   href="#List"
+                   target="List"
+                   toggle="on"
+                   ng-click="enableTab1()"
+                   active-class="active">List Planes
+                </a>
+
+                <a class="btn btn-default"
+                   href="#Actions"
+                   target="Actions"
+                   toggle="on"
+                   ng-click="enableTab2()"
+                   active-class="active">Actions
+                </a>
+            </div>
 
             <div class="tab-content">
 
@@ -31,28 +38,17 @@
                      toggleable
                      ng-class="{active: tab == 1}"
                      default="active"
-                     id="Tab1"
+                     id="List"
                      exclusion-group="myTabs">
-
                     <div ng-include src='"planemodels-list-Planemodels.html"'></div>
                 </div>
 
                 <div class="tab-pane"
                      toggleable
                      ng-class="{active: tab == 2}"
-                     id="Tab2"
+                     id="Actions"
                      exclusion-group="myTabs">
-
                     <div ng-include src='"planemodels-list-Actions.html"'></div>
-                </div>
-
-                <div class="tab-pane"
-                     toggleable
-                     ng-class="{active: tab == 3}"
-                     id="Tab3"
-                     exclusion-group="myTabs">
-
-                    <div ng-include src='"planemodels-list-Export.html"'></div>
                 </div>
             </div>
         </div>
