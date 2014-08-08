@@ -242,10 +242,7 @@ sdApp.controller('PlanesListCtrl', function ($scope, $rootScope, $routeParams, $
         };
     }
 
-    //$scope.enableTab1();
-//    console.log('before toogle');
-//    $rootScope.toggle('planes_actions', 'on');
-//    console.log('after toogle');
+    $scope.enableTab1();
 
     $scope.planes = [];
 
@@ -255,7 +252,6 @@ sdApp.controller('PlanesListCtrl', function ($scope, $rootScope, $routeParams, $
     $scope.planeReg = "";
 
     initPlanes();
-
 
 
 });
